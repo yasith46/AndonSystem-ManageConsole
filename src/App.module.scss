@@ -1,9 +1,221 @@
 .App {
-  margin: 0 auto;
-  padding: 2.3em 3em 2em;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  border: 2px dashed #888888;
-  border-radius: 30px;
+    margin: 0 0vw;
+    padding: 0em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed #888888;
+    width: 99vw;
+    min-height: 100vh;
+    border-radius: 0;
 }
+
+.topbar {
+    width: 99vw;
+    height: 8vh;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: #FFFFFF;
+    box-shadow: 2px 0 2px rgba(26, 26, 26, 0.3);
+    top: 0vw;
+}
+
+.logotext {
+    line-height: 0;
+    font-style: italic;
+    position: relative;
+    right: 10vw;
+    text-align: start;
+    color: #D4145A;
+    font-size: 5vh;
+    left: 3vw;
+}
+
+.account {
+    height: 8vh;
+    width: 8vh;
+    text-align: end;
+    position: relative;
+    border-top-right-radius: 100;
+    border-bottom-right-radius: 100;
+    border-bottom-left-radius: 100;
+    border-radius: 100%;
+    background-repeat: no-repeat;
+    background-image: url("https://static.wixstatic.com/media/d9657b20f1b9473f90815b9da211bb2a.jpg/v1/fit/w_924,h_520/d9657b20f1b9473f90815b9da211bb2a.jpg");
+    background-position: 50%;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+    left: 40vw;
+}
+
+.navbar {
+    width: 6.5vw;
+    min-height: 88vh;
+    position: absolute;
+    top: 12vh;
+    background-color: #D4145A;
+    box-shadow: 2px 0 2px #B2B2B2;
+}
+
+.dashboard {
+    width: 92.5vw;
+    position: absolute;
+    top: 12vh;
+    left: 6.5vw;
+    display: grid;
+    grid-template-rows: 1fr 4fr 4fr;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    background-color: #E8E8E8;
+}
+
+.graph {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    background-color: #FFFFFF;
+    padding: 0vw;
+    margin: 0vh 1.5vw 2vh 3vw;
+    border-radius: 4%;
+    box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
+}
+
+.boardname {
+    font-size: 4vh;
+    text-align: start;
+    padding: 0vw 0vw 0vw 3vw;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    color: #4D4D4D;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-end: 1;
+    grid-column-start: 1;
+}
+
+.stat {}
+
+.stats {
+    grid-row-start: 3;
+    grid-column-start: 1;
+    margin-left: 3vw;
+    margin-right: 1.5vw;
+    margin-bottom: 4vh;
+    margin-top: 1vh;
+    background-color: #FFFFFF;
+    box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 4%;
+}
+
+.currentcalls {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    background-color: #FFFFFF;
+    overflow: visible;
+    align-self: stretch;
+    grid-row-end: 4;
+    grid-row-start: 2;
+    margin: 0vw 3vw 2.5vw 0vw;
+    border-radius: 4%;
+    box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
+}
+
+.graphtitle {}
+
+.cardtitle {
+    text-align: start;
+    margin-left: 3vh;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    color: #727272;
+    font-size: 2.25vh;
+}
+
+.callsat {
+    background-color: #E4E4E4;
+    margin-right: 2vw;
+    margin-left: 1.5vw;
+    border-radius: 4%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    line-height: 0;
+}
+
+.callname {
+    position: relative;
+    margin-left: 2.5vw;
+    margin-right: 2vw;
+    font-size: 4vh;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    align-self: end;
+    text-align: start;
+    font-style: normal;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    margin-bottom: 0vh;
+    top: 0vh;
+    left: 0px;
+    margin-top: 1vh;
+}
+
+.dept {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    position: relative;
+    text-align: start;
+    margin-left: 2.5vw;
+    margin-top: 4vh;
+    top: 6vh;
+    font-size: 3vh;
+    font-weight: 100;
+}
+
+.calltotext {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    text-align: start;
+    margin-left: 2.5vw;
+    margin-top: 10vh;
+}
+
+.callsatleft {
+    margin-left: 0vw;
+    text-align: start;
+    padding-left: 2.5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.machinenum {
+    font-weight: 300;
+    font-size: 4vh;
+    line-height: 0;
+    margin: 0vh 1vh 1vh 0vh;
+}
+
+.department {
+    font-weight: 100;
+    font-size: 3vh;
+    margin: 4vh 0px 0px;
+}
+
+.calltotext {
+    margin-left: 0vw;
+    margin-top: 6vh;
+    font-family: Arial, sans-serif;
+    font-weight: 200;
+    font-size: 2vh;
+}
+
+.callto {
+    margin: 3vh 0vh 0vh;
+    font-size: 3vh;
+    font-weight: 400;
+}
+
+.callsatright {}

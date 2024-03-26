@@ -3,25 +3,32 @@ import styles from './App.module.scss';
 function App() {
     return (
         <div className={styles.App}>
-            <h2>Welcome to your App Component 🎉</h2>
-            <span>
-                Double click to edit App component
-                <br />
-                &amp; drag here elements from + Add <b>Elements</b> Panel
-            </span>
-            <p
-                style={{
-                    fontSize: '12px',
-                    marginTop: '80px',
-                    display: 'flex',
-                    gap: '3px',
-                    justifyContent: 'center',
-                }}
-            >
-                This project is using <img src="/src/assets/vite.svg" width="12" />+
-                <img src="/src/assets/typescript.svg" width="12" />
-                Visit vitejs.dev to learn more.
-            </p>
+            <div className={styles.topbar}>
+                <h1 className={styles.logotext}>ANDON</h1>
+                <button className={styles.account}></button>
+            </div>
+            <div className={styles.navbar}></div>
+            <div className={styles.dashboard}>
+                <h1 className={styles.boardname}>Dashboard</h1>
+                <div className={styles.graph}>
+                    <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
+                </div>
+                <div className={styles.stats}>
+                    <h3 className={styles.cardtitle}>Stats</h3>
+                </div>
+                <div className={styles.currentcalls}>
+                    <h3 className={styles.cardtitle}>Current Andon Calls</h3>
+                    <div className={styles.callsat}>
+                        <div className={styles.callsatleft}>
+                            <h1 className={styles.machinenum}>MA00251</h1>
+                            <h3 className={styles.department}>Sewing Department</h3>
+                            <h2 className={styles.calltotext}>Andon Call to</h2>
+                            <h3 className={styles.callto}>CNC Tech</h3>
+                        </div>
+                        <div className={styles.callsatright} />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
