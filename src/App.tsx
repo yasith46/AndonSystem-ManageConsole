@@ -1,4 +1,5 @@
 import styles from './App.module.scss';
+import Classnames from 'classnames';
 
 function App() {
     return (
@@ -18,14 +19,70 @@ function App() {
                 </div>
                 <div className={styles.currentcalls}>
                     <h3 className={styles.cardtitle}>Current Andon Calls</h3>
-                    <div className={styles.callsat}>
-                        <div className={styles.callsatleft}>
-                            <h1 className={styles.machinenum}>MA00251</h1>
-                            <h3 className={styles.department}>Sewing Department</h3>
-                            <h2 className={styles.calltotext}>Andon Call to</h2>
-                            <h3 className={styles.callto}>CNC Tech</h3>
+                    <div className={styles.calls}>
+                        <div className={styles.callsat}>
+                            <div className={styles.callsatleft}>
+                                <h1 className={styles.machinenum}>MA00251</h1>
+                                <h3 className={styles.department}>Sewing Department</h3>
+                                <h2 className={styles.calltotext}>Andon Call to</h2>
+                                <h3 className={styles.callto}>CNC Tech</h3>
+                            </div>
+                            <div className={styles.callsatright}>
+                                <div className={styles.timeblock}>
+                                    <h1 className={styles.time}>08:29</h1>
+                                    <div className={styles.status} />
+                                </div>
+                                <h1 className={styles.attended}>Not Attended Yet</h1>
+                            </div>
                         </div>
-                        <div className={styles.callsatright} />
+                        <div className={styles.att}>
+                            <div className={styles.callsatleft}>
+                                <h1 className={styles.machinenum}>MA00251</h1>
+                                <h3 className={styles.department}>Sewing Department</h3>
+                            </div>
+                            <div className={styles.callsatright}>
+                                <div className={styles.timeblock}>
+                                    <h1 className={styles.time}>08:29</h1>
+                                    <div className={styles.status} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.att}>
+                            <div className={styles.callsatleft}>
+                                <h1 className={styles.machinenum}>MA00251</h1>
+                                <h3 className={styles.department}>Sewing Department</h3>
+                            </div>
+                            <div className={styles.callsatright}>
+                                <div className={styles.timeblock}>
+                                    <h1 className={styles.time}>08:29</h1>
+                                    <div className={styles.status} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.att}>
+                            <div className={styles.callsatleft}>
+                                <h1 className={styles.machinenum}>MA00251</h1>
+                                <h3 className={styles.department}>Sewing Department</h3>
+                            </div>
+                            <div className={styles.callsatright}>
+                                <div className={styles.timeblock}>
+                                    <h1 className={styles.time}>08:29</h1>
+                                    <div className={styles.status} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.att}>
+                            <div className={styles.callsatleft}>
+                                <h1 className={styles.machinenum}>MA00251</h1>
+                                <h3 className={styles.department}>Sewing Department</h3>
+                            </div>
+                            <div className={styles.callsatright}>
+                                <div className={styles.timeblock}>
+                                    <h1 className={styles.time}>08:29</h1>
+                                    <div className={styles.status} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
