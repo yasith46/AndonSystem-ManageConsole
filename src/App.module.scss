@@ -95,6 +95,7 @@
     grid-row-end: 1;
     grid-column-end: 1;
     grid-column-start: 1;
+    display: grid;
 }
 
 .stat {}
@@ -293,4 +294,82 @@
 
 .calls {
     overflow: visible;
+}
+
+.managecalls {
+    min-height: 88vh;
+    width: 92.5vw;
+    position: absolute;
+    top: 100vh;
+    left: 6.5vw;
+    background-color: #E8E8E8;
+}
+
+.dash {}
+
+.managebutt {}
+
+.dashbutt {}
+
+.ManageCalls {}
+
+.coltitle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding-left: 3vw;
+    color: #787878;
+}
+
+.coltitletext {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 3vh;
+    text-align: start;
+    margin-left: 2vw;
+}
+
+.managecallcard {
+    height: 10vh;
+    background-color: #FFFFFF;
+    padding-left: 0vw;
+    margin-left: 3vw;
+    width: 86vw;
+    border-radius: 1%;
+    margin-top: 0vh;
+    margin-bottom: 2vh;
+}
+
+.manage {
+    margin: 3vh 0vh 0vh;
+}
+
+.cardtext {
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    font-size: 4vh;
+    line-height: 1.1;
+    text-align: start;
+}
+
+.mancall {}
+
+.mancalldesc {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.mancallto {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
+.mancalledit {}
+
+.mancalldel {}
+
+.mancallbut {
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

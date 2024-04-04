@@ -1,14 +1,36 @@
+import React, { useState } from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
 
 function App() {
+    const [showDashboard, setShowDashboard] = useState(true);
+    const [showManCall, setShowManCall] = useState(false);
+
+    const toggleDashboardVisibility = () => {
+        setShowDashboard(true);
+        setShowManCall(false);
+    };
+
+    const toggleManCallVisibility = () => {
+        setShowDashboard(false);
+        setShowManCall(true);
+    };
+
     return (
         <div className={styles.App}>
             <div className={styles.topbar}>
                 <h1 className={styles.logotext}>ANDON</h1>
                 <button className={styles.account}></button>
             </div>
-            <div className={styles.navbar}></div>
+            <div className={styles.navbar}>
+                <button className={styles.dashbutt} onClick={toggleDashboardVisibility}>
+                    Button
+                </button>
+                <button className={styles.managebutt} onClick={toggleManCallVisibility}>
+                    Button
+                </button>
+            </div>
+            //Dashboard
             <div className={styles.dashboard}>
                 <h1 className={styles.boardname}>Dashboard</h1>
                 <div className={styles.graph}>
@@ -82,6 +104,42 @@ function App() {
                                     <div className={styles.status} />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            // ManageCalls
+            <div className={styles.managecalls}>
+                <h1 className={styles.boardname}>Manage Calls</h1>
+                <div className={styles.coltitle}>
+                    <h1 className={styles.coltitletext}>Color</h1>
+                    <h1 className={styles.coltitletext}>Description </h1>
+                    <div></div>
+                    <h1 className={styles.coltitletext}>Call To</h1>
+                </div>
+                <div className={styles.managecallcard}>
+                    <div className={styles.coltitle}>
+                        <div className={Classnames(styles.status, styles.manage)} />
+                        <h1 className={Classnames(styles.cardtext, styles.mancalldesc)}>
+                            Heading 1
+                        </h1>
+                        <h1 className={Classnames(styles.cardtext, styles.mancallto)}>Heading 1</h1>
+                        <div className={styles.mancallbut}>
+                            <button className={styles.mancalldel}>Button</button>
+                            <button className={styles.mancalledit}>Button</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.managecallcard}>
+                    <div className={styles.coltitle}>
+                        <div className={Classnames(styles.status, styles.manage)} />
+                        <h1 className={Classnames(styles.cardtext, styles.mancalldesc)}>
+                            Heading 1
+                        </h1>
+                        <h1 className={Classnames(styles.cardtext, styles.mancallto)}>Heading 1</h1>
+                        <div className={styles.mancallbut}>
+                            <button className={styles.mancalldel}>Button</button>
+                            <button className={styles.mancalledit}>Button</button>
                         </div>
                     </div>
                 </div>
