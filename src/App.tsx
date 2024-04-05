@@ -30,7 +30,6 @@ function App() {
                     Button
                 </button>
             </div>
-            //Dashboard
             <div className={styles.dashboard}>
                 <h1 className={styles.boardname}>Dashboard</h1>
                 <div className={styles.graph}>
@@ -38,6 +37,16 @@ function App() {
                 </div>
                 <div className={styles.stats}>
                     <h3 className={styles.cardtitle}>Stats</h3>
+                    <div className={styles.statgrid}>
+                        <h1 className={styles.statname}>Downtime for the day</h1>
+                        <h1 className={styles.statnum}>02:10:00 </h1>
+                        <h1 className={styles.statname}>Average Rise time</h1>
+                        <h1 className={styles.statbad}>12:25 </h1>
+                        <h1 className={styles.statname}>Anomalies</h1>
+                        <h1 className={styles.statnum}>None</h1>
+                        <h1 className={styles.statname}>Anomalies</h1>
+                        <h1 className={styles.statnum}>None</h1>
+                    </div>
                 </div>
                 <div className={styles.currentcalls}>
                     <h3 className={styles.cardtitle}>Current Andon Calls</h3>
@@ -108,7 +117,6 @@ function App() {
                     </div>
                 </div>
             </div>
-            // ManageCalls
             <div className={styles.managecalls}>
                 <h1 className={styles.boardname}>Manage Calls</h1>
                 <div className={styles.coltitle}>
@@ -134,20 +142,42 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.managecallcard}>
+                <div className={Classnames(styles.managecallcard, styles.cardedit)}>
+                    <h1 className={styles.cardedittitle}>Edit </h1>
                     <div className={styles.coltitle}>
-                        <div className={Classnames(styles.status, styles.manage)} />
-                        <h1 className={Classnames(styles.cardtext, styles.mancalldesc)}>
-                            Heading 1
-                        </h1>
-                        <h1 className={Classnames(styles.cardtext, styles.mancallto)}>Heading 1</h1>
+                        <select className={styles.colorlist}>
+                            <option>
+                                <div className={styles.colorop}>
+                                    <h1 className={styles.op1}>O</h1>
+                                    <h1 className={styles.op}>Orange</h1>
+                                </div>
+                            </option>
+                            <option>Banana</option>
+                            <option>Watermelon</option>
+                        </select>
+                        <input className={styles.mancalldescin} />
+                        <input className={styles.mancalltoin} />
                         <div className={styles.mancallbut}>
-                            <button className={styles.mancalldel}>Button</button>
-                            <button className={styles.mancalledit}>Button</button>
+                            <button className={styles.mancalldel}>
+                                <img
+                                    src="/src/assets/check.svg"
+                                    alt=""
+                                    className={styles.editsvg}
+                                />
+                            </button>
+                            <button className={styles.mancalledit}>
+                                <img
+                                    src="/src/assets/close.svg"
+                                    alt=""
+                                    className={styles.editsvg}
+                                />
+                            </button>
                         </div>
                     </div>
                 </div>
+                <button className={styles.addbutton}>Add Calls +</button>
             </div>
+            <div className={styles.manageconsoles} />
         </div>
     );
 }
