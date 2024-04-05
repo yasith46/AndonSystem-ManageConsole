@@ -125,8 +125,12 @@ function App() {
                         </h1>
                         <h1 className={Classnames(styles.cardtext, styles.mancallto)}>Heading 1</h1>
                         <div className={styles.mancallbut}>
-                            <button className={styles.mancalldel}>Button</button>
-                            <button className={styles.mancalledit}>Button</button>
+                            <button className={styles.mancalldel}>
+                                <img src="/src/assets/edit.svg" alt="" className={styles.editsvg} />
+                            </button>
+                            <button className={styles.mancalledit}>
+                                <img src="/src/assets/del.svg" alt="" className={styles.editsvg} />
+                            </button>
                         </div>
                     </div>
                 </div>
