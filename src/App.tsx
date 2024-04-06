@@ -24,10 +24,7 @@ function App() {
             </div>
             <div className={styles.navbar}>
                 <button className={styles.dashbutt} onClick={toggleDashboardVisibility}>
-                    Button
-                </button>
-                <button className={styles.managebutt} onClick={toggleManCallVisibility}>
-                    Button
+                    <img src="/src/assets/dash.svg" alt="" className={styles.dashim} />
                 </button>
             </div>
             <div className={styles.dashboard}>
@@ -42,6 +39,8 @@ function App() {
                         <h1 className={styles.statnum}>02:10:00 </h1>
                         <h1 className={styles.statname}>Average Rise time</h1>
                         <h1 className={styles.statbad}>12:25 </h1>
+                        <h1 className={styles.statname}>Anomalies</h1>
+                        <h1 className={styles.statnum}>None</h1>
                         <h1 className={styles.statname}>Anomalies</h1>
                         <h1 className={styles.statnum}>None</h1>
                         <h1 className={styles.statname}>Anomalies</h1>
@@ -257,6 +256,9 @@ function App() {
                     </div>
                 </div>
                 <button className={styles.addbutton}>Add Calls +</button>
+            </div>
+            <div className={styles.managedepts}>
+                <h1 className={styles.boardname}>Manage Departments </h1>
             </div>
         </div>
     );

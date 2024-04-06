@@ -317,6 +317,14 @@
 }
 
 .dashbutt {
+  width: 6.5vw;
+  height: 10vh;
+  border-radius: 0px;
+  background-color: #d4145a;
+  padding-top: 0em;
+  padding-right: 0em;
+  padding-bottom: 0em;
+  padding-left: 0em;
 }
 
 .ManageCalls {
@@ -485,6 +493,8 @@
 .statgrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 24vh;
+  line-height: 0;
 }
 .statname {
   font-family: Arial, sans-serif;
@@ -495,6 +505,7 @@
   grid-column-start: 1;
   grid-column-end: 2;
   color: #4d4d4d;
+  line-height: 0;
 }
 .manageconsoles {
   width: 92.5vw;
@@ -752,4 +763,21 @@
   margin-left: 60.5vw;
   padding: 0vh 0vh 1vh;
   color: rgb(120, 120, 120);
+}
+.managedepts {
+  width: 92.5vw;
+  min-height: 88vh;
+  position: absolute;
+  top: 276vh;
+  left: 6.5vw;
+  background-color: #e8e8e8;
+}
+.dash {
+  width: 6.5vw;
+  height: 10vh;
+}
+.dashim {
+  height: 10vh;
+  width: 3.5vw;
+  color: #ffffff;
 }
