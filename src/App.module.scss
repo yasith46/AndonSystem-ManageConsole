@@ -327,8 +327,9 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   padding-left: 3vw;
   color: #787878;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: 4;
+  align-items: start;
+  grid-row-start: 3;
 }
 
 .coltitletext {
@@ -348,7 +349,7 @@
   border-radius: 0.5vw;
   margin-top: 0vh;
   margin-bottom: 2vh;
-  height: 8vh;
+  height: 9vh;
 }
 
 .manage {
@@ -358,7 +359,7 @@
 .cardtext {
   font-family: Arial, sans-serif;
   font-weight: 100;
-  font-size: 4vh;
+  font-size: 3.2vh;
   line-height: 1.1;
   text-align: start;
 }
@@ -370,28 +371,38 @@
   grid-column-start: 2;
   grid-column-end: 4;
   font-size: 3.2vh;
+  line-height: 1.5;
 }
 
 .mancallto {
   grid-column-start: 4;
-  grid-column-end: 6;
+  grid-column-end: 5;
   font-size: 3.1vh;
   margin-left: 2vw;
+  line-height: 1.5;
 }
 
 .mancalledit {
   background-color: #ffffff;
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .mancalldel {
   cursor: pointer;
   background-color: rgb(255, 255, 255);
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .mancallbut {
   overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-column-start: 6;
+  grid-column-end: 7;
+  line-height: 0;
+  height: 9vh;
 }
 .mancalldelimg {
 }
@@ -411,13 +422,13 @@
   font-family: Arial, sans-serif;
   font-weight: 100;
   margin-left: 2.5vw;
-  line-height: 0;
   margin-top: 3.75vh;
-  color: #c7c7c7;
+  color: #acacac;
+  line-height: 0;
 }
 .mancalldescin {
   grid-column-end: 4;
-  background-color: #e6e6e6;
+  background-color: #f0f0f0;
   opacity: 1;
   padding-left: 2vh;
   padding-right: 2vh;
@@ -427,6 +438,7 @@
   font-size: 3vh;
   color: #616161;
   grid-column-start: 2;
+  height: 6vh;
 }
 .mancalltoin {
   grid-column-start: 4;
@@ -438,7 +450,8 @@
   color: #616161;
   border: 1px solid #acacac;
   border-radius: 0.7vw;
-  background-color: #e6e6e6;
+  background-color: #f0f0f0;
+  height: 6vh;
 }
 .addbutton {
   background-color: rgb(232, 232, 232);
@@ -461,9 +474,13 @@
   margin-top: 1vh;
   border: 1px solid #cbcbcb;
   margin-bottom: 2vh;
-  margin-right: 3vw;
-  font-size: 2.5vh;
-  padding: 1vw;
+  margin-right: 1vw;
+  font-size: 3vh;
+  padding: 0.5vw 0vw 0.5vw 1vw;
+  border-radius: 0.7vw;
+  background-color: #f0f0f0;
+  color: #808080;
+  height: 6vh;
 }
 .statgrid {
   display: grid;
@@ -485,6 +502,7 @@
   position: absolute;
   top: 188vh;
   left: 6.5vw;
+  background-color: #e8e8e8;
 }
 .statnum {
   font-family: Arial, sans-serif;
@@ -588,4 +606,150 @@
 }
 .op1 {
   color: #cb3030;
+}
+.con {
+}
+.machineno {
+  font-size: 3.2vh;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  line-height: 1.5;
+}
+.deptcon {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  line-height: 1.5;
+}
+.concalls {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  height: 9vh;
+  align-self: center;
+}
+.callgrid {
+  height: 9vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  align-items: center;
+}
+.st1 {
+  width: 4vh;
+  height: 4vh;
+  align-self: center;
+  text-align: center;
+  margin-left: 1vw;
+  border-radius: 100%;
+  background-color: #f7cd27;
+}
+.call1 {
+  background-color: #f72727;
+}
+.call2 {
+}
+.call3 {
+  background-color: #2fcd2f;
+}
+.con {
+  height: 15vh;
+  font-size: 33px;
+}
+.machinein {
+  margin-top: 0vh;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  padding: 0vh 2vh;
+  background-color: #f0f0f0;
+  border: 1px solid #acacac;
+  border-radius: 0.7vw;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  font-size: 3vh;
+  width: 8vw;
+  color: #616161;
+  height: 6vh;
+}
+.deptin {
+  background-color: #f0f0f0;
+  border: 1px solid #acacac;
+  border-radius: 0.7vw;
+  margin: 0vh 5vw 2vh 0vw;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  padding: 0vh 2vh;
+  font-size: 3vh;
+  color: #616161;
+  height: 6vh;
+}
+.conin {
+  background-color: #f0f0f0;
+  border: 1px solid #acacac;
+  border-radius: 0.7vw;
+  margin: 0vh 1vw 2vh 1.5vw;
+  color: #616161;
+  font-size: 3vh;
+  width: 12vw;
+  text-align: start;
+  padding: 0vw 0vw 0vw 1vw;
+  height: 6vh;
+}
+.selcalls {
+  margin-left: 1vw;
+}
+.button1txt {
+  font-size: 2.5vh;
+  text-align: start;
+  font-weight: 400;
+  line-height: 0.5;
+  margin-left: 1vw;
+}
+.col1 {
+  margin: 0vw 1vw 0vw 0vw;
+  font-size: 3vh;
+  background-color: #f0f0f0;
+  padding: 0.5vw 0vw 0.5vw 1vw;
+  height: 6vh;
+  border-radius: 0.7vw;
+  color: #808080;
+}
+.edit {
+}
+.con {
+  height: 15vh;
+}
+.edit2 {
+  height: 16vh;
+  align-self: center;
+  margin-top: 2vh;
+}
+.con {
+  height: 8vh;
+}
+.con {
+  height: 9vh;
+  padding: 0vw 0vw 0vw 1vw;
+}
+.edit2 {
+  display: grid;
+  grid-template-rows: 2fr 2fr 20fr;
+  padding-bottom: 0vw;
+  height: 40vh;
+}
+.button2 {
+}
+.button2txt {
+  font-size: 2.5vh;
+  font-weight: 400;
+  text-align: start;
+  line-height: 0.5;
+  margin-left: 1vw;
+}
+.button1txt {
+}
+.button2txt {
+  line-height: 0;
+  margin-left: 60.5vw;
+  padding: 0vh 0vh 1vh;
+  color: rgb(120, 120, 120);
 }

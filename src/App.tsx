@@ -177,7 +177,87 @@ function App() {
                 </div>
                 <button className={styles.addbutton}>Add Calls +</button>
             </div>
-            <div className={styles.manageconsoles} />
+            <div className={styles.manageconsoles}>
+                <h1 className={styles.boardname}>Manage Consoles</h1>
+                <div className={styles.coltitle}>
+                    <h1 className={styles.coltitletext}>Machine</h1>
+                    <h1 className={styles.coltitletext}>Department</h1>
+                    <div></div>
+                    <h1 className={styles.coltitletext}>Console ID</h1>
+                    <h1 className={styles.coltitletext}>Calls</h1>
+                </div>
+                <div className={Classnames(styles.managecallcard, styles.con)}>
+                    <div className={styles.coltitle}>
+                        <h1 className={Classnames(styles.cardtext, styles.machineno)}>MA00251</h1>
+                        <h1 className={Classnames(styles.cardtext, styles.deptcon)}>
+                            Sewing Department
+                        </h1>
+                        <h1 className={Classnames(styles.cardtext, styles.mancallto)}>
+                            1025668314
+                        </h1>
+                        <div className={styles.concalls}>
+                            <div className={styles.callgrid}>
+                                <div className={Classnames(styles.st1, styles.call1)} />
+                                <div className={Classnames(styles.st1, styles.call2)} />
+                                <div className={Classnames(styles.st1, styles.call3)} />
+                            </div>
+                        </div>
+                        <div className={styles.mancallbut}>
+                            <button className={styles.mancalldel}>
+                                <img src="/src/assets/edit.svg" alt="" className={styles.editsvg} />
+                            </button>
+                            <button className={styles.mancalledit}>
+                                <img src="/src/assets/del.svg" alt="" className={styles.editsvg} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className={Classnames(styles.managecallcard, styles.con, styles.edit2)}>
+                    <h1 className={styles.cardedittitle}>Edit </h1>
+                    <h1 className={styles.button2txt}>Heading 1</h1>
+                    <div className={styles.coltitle}>
+                        <input className={styles.machinein} />
+                        <input className={styles.deptin} />
+                        <input className={styles.conin} />
+                        <div className={styles.selcalls}>
+                            <select className={styles.col1}>
+                                <option>Apple</option>
+                                <option>Banana</option>
+                                <option>Watermelon</option>
+                            </select>
+                            <h1 className={styles.button1txt}>Heading 1</h1>
+                            <select className={styles.col1}>
+                                <option>Apple</option>
+                                <option>Banana</option>
+                                <option>Watermelon</option>
+                            </select>
+                            <h1 className={styles.button1txt}>Heading 1</h1>
+                            <select className={styles.col1}>
+                                <option>Apple</option>
+                                <option>Banana</option>
+                                <option>Watermelon</option>
+                            </select>
+                        </div>
+                        <div className={styles.mancallbut}>
+                            <button className={styles.mancalldel}>
+                                <img
+                                    src="/src/assets/check.svg"
+                                    alt=""
+                                    className={styles.editsvg}
+                                />
+                            </button>
+                            <button className={styles.mancalledit}>
+                                <img
+                                    src="/src/assets/close.svg"
+                                    alt=""
+                                    className={styles.editsvg}
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button className={styles.addbutton}>Add Calls +</button>
+            </div>
         </div>
     );
 }
