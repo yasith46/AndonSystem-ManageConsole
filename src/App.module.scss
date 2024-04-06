@@ -18,7 +18,7 @@
   grid-template-columns: 1fr 1fr;
   padding-top: 2vh;
   padding-bottom: 2vh;
-  background-color: #ffffff;
+  background-color: #1a1a1a;
   box-shadow: 2px 0 2px rgba(26, 26, 26, 0.3);
   top: 0vw;
 }
@@ -60,6 +60,7 @@
   top: 12vh;
   background-color: #d4145a;
   box-shadow: 2px 0 2px #b2b2b2;
+  height: auto;
 }
 
 .dashboard {
@@ -71,13 +72,13 @@
   grid-template-rows: 1fr 4fr 4fr;
   grid-template-columns: 1fr 1fr;
   min-height: 89vh;
-  background-color: #e8e8e8;
+  background-color: #323232;
 }
 
 .graph {
   grid-row-start: 2;
   grid-column-start: 1;
-  background-color: #ffffff;
+  background-color: #4d4d4d;
   padding: 0vw;
   margin: 0vh 1.5vw 2vh 3vw;
   border-radius: 2vh;
@@ -90,7 +91,7 @@
   padding: 0vw 0vw 0vw 3vw;
   font-family: Arial, sans-serif;
   font-weight: 100;
-  color: #4d4d4d;
+  color: #fbfbfb;
   grid-row-start: 1;
   grid-row-end: 1;
   grid-column-end: 1;
@@ -108,7 +109,7 @@
   margin-right: 1.5vw;
   margin-bottom: 4vh;
   margin-top: 1vh;
-  background-color: #ffffff;
+  background-color: #4d4d4d;
   box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
   border-radius: 2vh;
 }
@@ -116,7 +117,7 @@
 .currentcalls {
   grid-column-start: 2;
   grid-column-end: 2;
-  background-color: #ffffff;
+  background-color: #4d4d4d;
   overflow: auto;
   align-self: stretch;
   grid-row-end: 4;
@@ -135,7 +136,7 @@
   margin-left: 3vh;
   font-family: Arial, sans-serif;
   font-weight: 100;
-  color: #727272;
+  color: #e6e6e6;
   font-size: 2.25vh;
   position: relative;
   top: 0vw;
@@ -143,7 +144,7 @@
 }
 
 .callsat {
-  background-color: #e4e4e4;
+  background-color: #424141;
   margin-right: 2vw;
   margin-left: 1.5vw;
   border-radius: 1.5vh;
@@ -201,16 +202,19 @@
 }
 
 .machinenum {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 6vh;
   line-height: 0;
   margin: 0vh 1vh 1vh 0vh;
+  color: #b3b3b3;
+  font-style: italic;
 }
 
 .department {
   font-weight: 100;
   font-size: 3vh;
   margin: 5vh 0px 0px;
+  color: #b3b3b3;
 }
 
 .calltotext {
@@ -219,12 +223,14 @@
   font-family: Arial, sans-serif;
   font-weight: 200;
   font-size: 2vh;
+  color: #1a1a1a;
 }
 
 .callto {
   margin: 3vh 0vh 0vh;
   font-size: 3vh;
-  font-weight: 400;
+  font-weight: 500;
+  color: #b3b3b3;
 }
 
 .callsatright {
@@ -253,11 +259,12 @@
 
 .time {
   text-align: end;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 5vh;
   margin: 0vh;
   position: relative;
   line-height: 0.725;
+  color: #1a1a1a;
 }
 
 .status {
@@ -273,11 +280,12 @@
 .attended {
   text-align: end;
   font-size: 3.2vh;
-  font-weight: 200;
+  font-weight: 400;
   position: relative;
   bottom: 0vh;
   line-height: 1.1;
   top: 6vh;
+  color: #1a1a1a;
 }
 
 .space {
@@ -289,7 +297,7 @@
 .att {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #e4e4e4;
+  background-color: #424242;
   margin-left: 1.5vw;
   margin-right: 2vw;
   margin-bottom: 2vh;
@@ -305,9 +313,9 @@
   min-height: 88vh;
   width: 92.5vw;
   position: absolute;
-  top: 100vh;
+  top: 12vh;
   left: 6.5vw;
-  background-color: #e8e8e8;
+  background-color: #323232;
 }
 
 .dash {
@@ -325,6 +333,9 @@
   padding-right: 0em;
   padding-bottom: 0em;
   padding-left: 0em;
+  position: absolute;
+  top: 0vw;
+  left: 0vw;
 }
 
 .ManageCalls {
@@ -350,7 +361,7 @@
 }
 
 .managecallcard {
-  background-color: #ffffff;
+  background-color: #4d4d4d;
   padding-left: 0vw;
   margin-left: 3vw;
   width: 86vw;
@@ -380,6 +391,7 @@
   grid-column-end: 4;
   font-size: 3.2vh;
   line-height: 1.5;
+  color: #e6e6e6;
 }
 
 .mancallto {
@@ -388,17 +400,18 @@
   font-size: 3.1vh;
   margin-left: 2vw;
   line-height: 1.5;
+  color: #e6e6e6;
 }
 
 .mancalledit {
-  background-color: #ffffff;
+  background-color: #4d4d4d;
   padding-right: 1em;
   padding-left: 1em;
 }
 
 .mancalldel {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
+  background-color: #4d4d4d;
   padding-right: 1em;
   padding-left: 1em;
 }
@@ -426,27 +439,28 @@
 }
 .cardedittitle {
   text-align: start;
-  font-size: 3.2vh;
   font-family: Arial, sans-serif;
   font-weight: 100;
   margin-left: 2.5vw;
   margin-top: 3.75vh;
-  color: #acacac;
+  color: #e6e6e6;
   line-height: 0;
+  font-size: 2.5vh;
 }
 .mancalldescin {
   grid-column-end: 4;
-  background-color: #f0f0f0;
+  background-color: #3a3a3a;
   opacity: 1;
   padding-left: 2vh;
   padding-right: 2vh;
   margin: 1vh 2vw 2vh 0vw;
   border-radius: 0.7vw;
-  border: 1px solid #acacac;
+  border: 1px solid #1a1a1a;
   font-size: 3vh;
-  color: #616161;
+  color: #b3b3b3;
   grid-column-start: 2;
   height: 6vh;
+  font-style: italic;
 }
 .mancalltoin {
   grid-column-start: 4;
@@ -455,22 +469,24 @@
   padding-right: 2vh;
   padding-left: 2vh;
   font-size: 3vh;
-  color: #616161;
-  border: 1px solid #acacac;
+  color: #b3b3b3;
+  border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
-  background-color: #f0f0f0;
+  background-color: #3a3a3a;
   height: 6vh;
+  font-style: italic;
 }
 .addbutton {
-  background-color: rgb(232, 232, 232);
-  font-size: 2vh;
+  background-color: #323232;
   font-family: Arial, sans-serif;
-  font-weight: 100;
+  font-weight: 500;
   color: #808080;
-  border: 1px solid #b3b3b3;
+  border: 3px solid #4d4d4d;
   padding-right: 3vw;
   padding-left: 3vw;
-  letter-spacing: 0.1ch;
+  letter-spacing: 0.05ch;
+  font-size: 2.5vh;
+  font-style: normal;
 }
 .colorbutton {
   margin-bottom: 2vh;
@@ -480,15 +496,17 @@
 }
 .colorlist {
   margin-top: 1vh;
-  border: 1px solid #cbcbcb;
+  border: 1px solid #1a1a1a;
   margin-bottom: 2vh;
   margin-right: 1vw;
   font-size: 3vh;
   padding: 0.5vw 0vw 0.5vw 1vw;
   border-radius: 0.7vw;
-  background-color: #f0f0f0;
-  color: #808080;
+  background-color: #3c3c3c;
+  color: #b3b3b3;
   height: 6vh;
+  font-weight: 200;
+  font-style: italic;
 }
 .statgrid {
   display: grid;
@@ -504,16 +522,16 @@
   margin-left: 3vw;
   grid-column-start: 1;
   grid-column-end: 2;
-  color: #4d4d4d;
+  color: #b3b3b3;
   line-height: 0;
 }
 .manageconsoles {
   width: 92.5vw;
   min-height: 88vh;
   position: absolute;
-  top: 188vh;
+  top: 12vh;
   left: 6.5vw;
-  background-color: #e8e8e8;
+  background-color: #323232;
 }
 .statnum {
   font-family: Arial, sans-serif;
@@ -625,11 +643,13 @@
   grid-column-start: 1;
   grid-column-end: 2;
   line-height: 1.5;
+  color: #e6e6e6;
 }
 .deptcon {
   grid-column-start: 2;
   grid-column-end: 4;
   line-height: 1.5;
+  color: #e6e6e6;
 }
 .concalls {
   grid-column-start: 5;
@@ -671,39 +691,42 @@
   margin-right: 3vw;
   margin-bottom: 2vh;
   padding: 0vh 2vh;
-  background-color: #f0f0f0;
-  border: 1px solid #acacac;
+  background-color: #3c3c3c;
+  border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
   grid-column-start: 1;
   grid-column-end: 2;
   font-size: 3vh;
   width: 8vw;
-  color: #616161;
+  color: #b3b3b3;
   height: 6vh;
+  font-style: italic;
 }
 .deptin {
-  background-color: #f0f0f0;
-  border: 1px solid #acacac;
+  background-color: #3c3c3c;
+  border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
   margin: 0vh 5vw 2vh 0vw;
   grid-column-start: 2;
   grid-column-end: 4;
   padding: 0vh 2vh;
   font-size: 3vh;
-  color: #616161;
+  color: #b3b3b3;
   height: 6vh;
+  font-style: italic;
 }
 .conin {
-  background-color: #f0f0f0;
-  border: 1px solid #acacac;
+  background-color: #3c3c3c;
+  border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
   margin: 0vh 1vw 2vh 1.5vw;
-  color: #616161;
+  color: #b3b3b3;
   font-size: 3vh;
   width: 12vw;
   text-align: start;
   padding: 0vw 0vw 0vw 1vw;
   height: 6vh;
+  font-style: italic;
 }
 .selcalls {
   margin-left: 1vw;
@@ -718,11 +741,13 @@
 .col1 {
   margin: 0vw 1vw 0vw 0vw;
   font-size: 3vh;
-  background-color: #f0f0f0;
+  background-color: #3c3c3c;
   padding: 0.5vw 0vw 0.5vw 1vw;
   height: 6vh;
   border-radius: 0.7vw;
-  color: #808080;
+  color: #b3b3b3;
+  font-style: italic;
+  border: 1px solid #1a1a1a;
 }
 .edit {
 }
@@ -757,27 +782,85 @@
   margin-left: 1vw;
 }
 .button1txt {
+  color: #b3b3b3;
 }
 .button2txt {
   line-height: 0;
-  margin-left: 60.5vw;
+  margin-left: 61vw;
   padding: 0vh 0vh 1vh;
-  color: rgb(120, 120, 120);
+  color: #b3b3b3;
 }
 .managedepts {
   width: 92.5vw;
   min-height: 88vh;
   position: absolute;
-  top: 276vh;
+  top: 12vh;
   left: 6.5vw;
-  background-color: #e8e8e8;
+  background-color: #323232;
 }
 .dash {
   width: 6.5vw;
   height: 10vh;
 }
 .dashim {
-  height: 10vh;
   width: 3.5vw;
   color: #ffffff;
+  align-self: center;
+  margin: 0px;
+  height: 8vh;
+}
+.callbutt {
+  width: 6.5vw;
+  height: 10vh;
+  position: absolute;
+  top: 10vh;
+  left: 0vw;
+  align-self: start;
+  border-radius: 0px;
+  background-color: #d4145a;
+}
+.conbutt {
+  width: 6.5vw;
+  height: 10vh;
+  position: relative;
+  top: 20vh;
+  left: 0px;
+  border-radius: 0px;
+  background-color: #d4145a;
+}
+.deptbutt {
+  width: 6.5vw;
+  height: 10vh;
+  position: absolute;
+  top: 30vh;
+  left: 0vw;
+  border-radius: 0px;
+  background-color: #d4145a;
+}
+.machim {
+}
+.navbutclicked {
+  background-color: #800c35;
+}
+.dep1 {
+}
+.dep2 {
+}
+.deptname {
+  line-height: 1.5;
+  color: #e6e6e6;
+}
+.deptnamein {
+  font-size: 3vh;
+  color: #b3b3b3;
+  font-style: italic;
+  height: 6vh;
+  width: 30vw;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 1vh 3vw 2vh 0vw;
+  padding: 0vw 2vw;
+  border: 1px solid #1a1a1a;
+  border-radius: 0.7vw;
+  background-color: #3c3c3c;
 }
