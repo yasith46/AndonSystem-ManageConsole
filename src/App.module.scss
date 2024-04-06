@@ -55,7 +55,7 @@
 
 .navbar {
   width: 6.5vw;
-  min-height: 88vh;
+  min-height: 87.9vh;
   position: absolute;
   top: 12vh;
   background-color: #d4145a;
@@ -71,7 +71,7 @@
   display: grid;
   grid-template-rows: 1fr 4fr 4fr;
   grid-template-columns: 1fr 1fr;
-  min-height: 89vh;
+  min-height: 87.9vh;
   background-color: #323232;
 }
 
@@ -107,11 +107,12 @@
   grid-column-start: 1;
   margin-left: 3vw;
   margin-right: 1.5vw;
-  margin-bottom: 4vh;
+  margin-bottom: 3vh;
   margin-top: 1vh;
   background-color: #4d4d4d;
   box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
   border-radius: 2vh;
+  overflow: auto;
 }
 
 .currentcalls {
@@ -122,7 +123,7 @@
   align-self: stretch;
   grid-row-end: 4;
   grid-row-start: 2;
-  margin: 0vw 3vw 2.5vw 0vw;
+  margin: 0vw 3vw 2vh 0vw;
   border-radius: 2vh;
   box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
   max-height: 75vh;
@@ -310,7 +311,7 @@
 }
 
 .managecalls {
-  min-height: 88vh;
+  min-height: 87.9vh;
   width: 92.5vw;
   position: absolute;
   top: 12vh;
@@ -396,11 +397,11 @@
 
 .mancallto {
   grid-column-start: 4;
-  grid-column-end: 5;
   font-size: 3.1vh;
   margin-left: 2vw;
   line-height: 1.5;
   color: #e6e6e6;
+  grid-column-end: 6;
 }
 
 .mancalledit {
@@ -626,7 +627,6 @@
 }
 .colorop {
   display: grid;
-  grid-template-columns: 1fr 3fr;
 }
 .op1col {
   width: 2vh;
@@ -813,7 +813,7 @@
   width: 6.5vw;
   height: 10vh;
   position: absolute;
-  top: 10vh;
+  top: 20vh;
   left: 0vw;
   align-self: start;
   border-radius: 0px;
@@ -823,10 +823,10 @@
   width: 6.5vw;
   height: 10vh;
   position: relative;
-  top: 20vh;
   left: 0px;
   border-radius: 0px;
   background-color: #d4145a;
+  top: 10vh;
 }
 .deptbutt {
   width: 6.5vw;
@@ -863,4 +863,17 @@
   border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
   background-color: #3c3c3c;
+}
+.conid {
+  line-height: 1.5;
+  font-size: 3.2vh;
+  font-style: normal;
+  color: #e6e6e6;
+  margin-left: 1vw;
+}
+.temp {
+}
+.stattmp {
+  line-height: 1.5;
+  color: #e6e6e6;
 }

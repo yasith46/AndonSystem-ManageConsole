@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
 
+interface Record {
+    status: string;
+    mancalldesc: string;
+    mancallto: string;
+}
+
 function App() {
     const [showDashboard, setShowDashboard] = useState(true);
     const [showManCall, setShowManCall] = useState(false);
@@ -36,42 +42,93 @@ function App() {
         setShowManDept(true);
     };
 
+    const [records, setRecords] = useState<Record[]>([]);
+
+    const [newRecord, setNewRecord] = useState<Record>({
+        status: '',
+        mancalldesc: '',
+        mancallto: '',
+    });
+
+    const [showAddRecord, setShowAddRecord] = useState(false);
+
+    const toggleAddRecord = () => {
+        setShowAddRecord(!showAddRecord);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setNewRecord({ ...newRecord, [name]: value });
+    };
+
+    const handleAddRecord = () => {
+        setRecords([...records, newRecord]);
+        setNewRecord({ status: '', mancalldesc: '', mancallto: '' });
+        toggleAddRecord();
+    };
+
+    const handleCancelAddRecord = () => {
+        setNewRecord({ status: '', mancalldesc: '', mancallto: '' });
+        toggleAddRecord();
+    };
+
+
+
+
+
+
+
     return (
         <div className={styles.App}>
             <div className={styles.topbar}>
                 <h1 className={styles.logotext}>ANDON</h1>
                 <button className={styles.account}></button>
             </div>
+
             <div className={styles.navbar}>
                 <button
                     className={Classnames(styles.dashbutt, {
                         [styles.navbutclicked]: showDashboard,
                     })}
-                    onClick={toggleDashboardVisibility}>
+                    onClick={toggleDashboardVisibility}
+                >
                     <img src="/src/assets/dash.svg" alt="" className={styles.dashim} />
                 </button>
 
-                <button className={Classnames(styles.conbutt, {
+                <button
+                    className={Classnames(styles.conbutt, {
                         [styles.navbutclicked]: showManCon,
                     })}
-                    onClick={toggleManConVisibility}>
+                    onClick={toggleManConVisibility}
+                >
                     <img src="/src/assets/machine.svg" alt="" className={styles.dashim} />
                 </button>
 
-                <button className={Classnames(styles.callbutt, {
+                <button
+                    className={Classnames(styles.callbutt, {
                         [styles.navbutclicked]: showManCall,
                     })}
-                    onClick={toggleManCallVisibility}>
+                    onClick={toggleManCallVisibility}
+                >
                     <img src="/src/assets/call.svg" alt="" className={styles.dashim} />
                 </button>
 
-                <button className={Classnames(styles.deptbutt, {
+                <button
+                    className={Classnames(styles.deptbutt, {
                         [styles.navbutclicked]: showManDept,
                     })}
-                    onClick={toggleManDeptVisibility}>
+                    onClick={toggleManDeptVisibility}
+                >
                     <img src="/src/assets/dept.svg" alt="" className={styles.dashim} />
                 </button>
             </div>
+
+
+
+
+
+
+
 
             {showDashboard && (
                 <div className={styles.dashboard}>
@@ -165,68 +222,118 @@ function App() {
                 </div>
             )}
 
+
+
+
+
+
+
+
             {showManCall && (
                 <div className={styles.managecalls}>
                     <h1 className={styles.boardname}>Manage Calls</h1>
+
                     <div className={styles.coltitle}>
                         <h1 className={styles.coltitletext}>Color</h1>
                         <h1 className={styles.coltitletext}>Description </h1>
                         <div></div>
                         <h1 className={styles.coltitletext}>Call To</h1>
                     </div>
-                    <div className={styles.managecallcard}>
-                        <div className={styles.coltitle}>
-                            <div className={Classnames(styles.status, styles.manage)} />
-                            <h1 className={Classnames(styles.cardtext, styles.mancalldesc)}>
-                                Heading 1
-                            </h1>
-                            <h1 className={Classnames(styles.cardtext, styles.mancallto)}>Heading 1</h1>
-                            <div className={styles.mancallbut}>
-                                <button className={styles.mancalldel}>
-                                    <img src="/src/assets/edit.svg" alt="" className={styles.editsvg} />
-                                </button>
-                                <button className={styles.mancalledit}>
-                                    <img src="/src/assets/del.svg" alt="" className={styles.editsvg} />
-                                </button>
+
+                    {records.map((record, index) => (
+                        <div className={styles.managecallcard} key={index}>
+                            <div className={styles.coltitle}>
+                                <h1 className={Classnames(styles.cardtext, styles.stattmp)}>
+                                    {record.status}
+                                </h1>
+                                <h1 className={Classnames(styles.cardtext, styles.mancalldesc)}>
+                                    {record.mancalldesc}
+                                </h1>
+                                <h1 className={Classnames(styles.cardtext, styles.mancallto)}>
+                                    {record.mancallto}
+                                </h1>
+                                <div className={styles.mancallbut}>
+                                    <button className={styles.mancalldel}>
+                                        <img
+                                            src="/src/assets/edit.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button className={styles.mancalledit}>
+                                        <img
+                                            src="/src/assets/del.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={Classnames(styles.managecallcard, styles.cardedit)}>
-                        <h1 className={styles.cardedittitle}>Edit </h1>
-                        <div className={styles.coltitle}>
-                            <select className={styles.colorlist}>
-                                <option>
-                                    <div className={styles.colorop}>
-                                        <h1 className={styles.op1}>O</h1>
-                                        <h1 className={styles.op}>Orange</h1>
-                                    </div>
-                                </option>
-                                <option>Banana</option>
-                                <option>Watermelon</option>
-                            </select>
-                            <input className={styles.mancalldescin} />
-                            <input className={styles.mancalltoin} />
-                            <div className={styles.mancallbut}>
-                                <button className={styles.mancalldel}>
-                                    <img
-                                        src="/src/assets/check.svg"
-                                        alt=""
-                                        className={styles.editsvg}
-                                    />
-                                </button>
-                                <button className={styles.mancalledit}>
-                                    <img
-                                        src="/src/assets/close.svg"
-                                        alt=""
-                                        className={styles.editsvg}
-                                    />
-                                </button>
+                    ))}
+
+                    {showAddRecord && (
+                        <div className={Classnames(styles.managecallcard, styles.cardedit)}>
+                            <h1 className={styles.cardedittitle}>Edit </h1>
+                            <div className={styles.coltitle}>
+                                <select
+                                    name      = "status" 
+                                    className = {styles.colorlist}
+                                    value     = {newRecord.status}
+                                    onChange  = {handleInputChange}>
+                                        <option value = "Red">Red </option>
+                                        <option value = "Yellow">Yellow</option>
+                                        <option value = "Green">Green</option>
+                                        <option value = "Blue">Blue</option>
+                                        <option value = "White">White</option>
+                                </select>
+                                <input 
+                                    type = "text"
+                                    name = "mancalldesc"
+                                    value = {newRecord.mancalldesc}
+                                    onChange = {handleInputChange}
+                                    placeholder="Description" 
+                                    className={styles.mancalldescin}/>
+                                <input
+                                    type = "text"
+                                    name = "mancallto"
+                                    value = {newRecord.mancallto}
+                                    onChange = {handleInputChange}
+                                    placeholder="Call to"
+                                    className={styles.mancalltoin}/>
+
+                                <div className={styles.mancallbut}>
+                                    <button className={styles.mancalldel} onClick={handleCancelAddRecord}>
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button className={styles.mancalledit} onClick={handleAddRecord}>
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button className={styles.addbutton}>Add Calls +</button>
+                    )}
+
+                    {!showAddRecord && (
+                        <button className={styles.addbutton} onClick={toggleAddRecord}>Add Calls +</button>
+                    )}
                 </div>
             )}
+
+
+
+
+
+
+
 
             {showManCon && (
                 <div className={styles.manageconsoles}>
@@ -240,11 +347,13 @@ function App() {
                     </div>
                     <div className={Classnames(styles.managecallcard, styles.con)}>
                         <div className={styles.coltitle}>
-                            <h1 className={Classnames(styles.cardtext, styles.machineno)}>MA00251</h1>
+                            <h1 className={Classnames(styles.cardtext, styles.machineno)}>
+                                MA00251
+                            </h1>
                             <h1 className={Classnames(styles.cardtext, styles.deptcon)}>
                                 Sewing Department
                             </h1>
-                            <h1 className={Classnames(styles.cardtext, styles.mancallto)}>
+                            <h1 className={Classnames(styles.cardtext, styles.conid)}>
                                 1025668314
                             </h1>
                             <div className={styles.concalls}>
@@ -256,10 +365,54 @@ function App() {
                             </div>
                             <div className={styles.mancallbut}>
                                 <button className={styles.mancalldel}>
-                                    <img src="/src/assets/edit.svg" alt="" className={styles.editsvg} />
+                                    <img
+                                        src="/src/assets/edit.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
                                 </button>
                                 <button className={styles.mancalledit}>
-                                    <img src="/src/assets/del.svg" alt="" className={styles.editsvg} />
+                                    <img
+                                        src="/src/assets/del.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={Classnames(styles.managecallcard, styles.con)}>
+                        <div className={styles.coltitle}>
+                            <h1 className={Classnames(styles.cardtext, styles.machineno)}>
+                                MA00251
+                            </h1>
+                            <h1 className={Classnames(styles.cardtext, styles.deptcon)}>
+                                Sewing Department
+                            </h1>
+                            <h1 className={Classnames(styles.cardtext, styles.conid)}>
+                                1025668314
+                            </h1>
+                            <div className={styles.concalls}>
+                                <div className={styles.callgrid}>
+                                    <div className={Classnames(styles.st1, styles.call1)} />
+                                    <div className={Classnames(styles.st1, styles.call2)} />
+                                    <div className={Classnames(styles.st1, styles.call3)} />
+                                </div>
+                            </div>
+                            <div className={styles.mancallbut}>
+                                <button className={styles.mancalldel}>
+                                    <img
+                                        src="/src/assets/edit.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
+                                </button>
+                                <button className={styles.mancalledit}>
+                                    <img
+                                        src="/src/assets/del.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
                                 </button>
                             </div>
                         </div>
@@ -312,6 +465,13 @@ function App() {
                 </div>
             )}
 
+
+
+
+
+
+
+
             {showManDept && (
                 <div className={styles.managedepts}>
                     <h1 className={styles.boardname}>Manage Departments </h1>
@@ -320,18 +480,30 @@ function App() {
                     </div>
                     <div className={Classnames(styles.managecallcard, styles.dep1)}>
                         <div className={styles.coltitle}>
-                            <h1 className={Classnames(styles.cardtext, styles.deptname)}>Heading 1</h1>
+                            <h1 className={Classnames(styles.cardtext, styles.deptname)}>
+                                Heading 1
+                            </h1>
                             <div className={styles.mancallbut}>
                                 <button className={styles.mancalldel}>
-                                    <img src="/src/assets/edit.svg" alt="" className={styles.editsvg} />
+                                    <img
+                                        src="/src/assets/edit.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
                                 </button>
                                 <button className={styles.mancalledit}>
-                                    <img src="/src/assets/del.svg" alt="" className={styles.editsvg} />
+                                    <img
+                                        src="/src/assets/del.svg"
+                                        alt=""
+                                        className={styles.editsvg}
+                                    />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className={Classnames(styles.managecallcard, styles.cardedit, styles.dep2)}>
+                    <div
+                        className={Classnames(styles.managecallcard, styles.cardedit, styles.dep2)}
+                    >
                         <h1 className={styles.cardedittitle}>Edit </h1>
                         <div className={styles.coltitle}>
                             <input className={styles.deptnamein} />
