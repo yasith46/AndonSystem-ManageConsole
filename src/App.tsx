@@ -72,6 +72,12 @@ function App() {
         toggleAddRecord();
     };
 
+    const handleDeleteRecord = (index: number) => {
+        const updatedRecords = [...records];
+        updatedRecords.splice(index, 1); // Remove the record at the specified index
+        setRecords(updatedRecords);
+    };
+
 
 
 
@@ -260,7 +266,7 @@ function App() {
                                             className={styles.editsvg}
                                         />
                                     </button>
-                                    <button className={styles.mancalledit}>
+                                    <button className={styles.mancalledit} onClick={() => handleDeleteRecord(index)}>
                                         <img
                                             src="/src/assets/del.svg"
                                             alt=""
@@ -303,14 +309,14 @@ function App() {
                                     className={styles.mancalltoin}/>
 
                                 <div className={styles.mancallbut}>
-                                    <button className={styles.mancalldel} onClick={handleCancelAddRecord}>
+                                    <button className={styles.mancalldel} onClick={handleAddRecord}>
                                         <img
                                             src="/src/assets/check.svg"
                                             alt=""
                                             className={styles.editsvg}
                                         />
                                     </button>
-                                    <button className={styles.mancalledit} onClick={handleAddRecord}>
+                                    <button className={styles.mancalledit} onClick={handleCancelAddRecord}>
                                         <img
                                             src="/src/assets/close.svg"
                                             alt=""
