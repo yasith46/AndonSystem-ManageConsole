@@ -95,10 +95,7 @@ function App() {
     };
 
     const handleEditCancelRecord = () => {
-        if (editingRecord) {
-            setRecords([...records, editingRecord]);
-            setEditingRecord(null);
-        }
+        setEditingRecord(null);
         setEditingRecordIndex(-1);
         toggleEditRecord(); // Hide the edit form
     };
