@@ -53,6 +53,7 @@ function App() {
     const [showAddRecord, setShowAddRecord] = useState(false);
 
     const toggleAddRecord = () => {
+        setNewRecord({ status: '', mancalldesc: '', mancallto: '' }); // Reset newRecord state
         setShowAddRecord(!showAddRecord);
     };
 
@@ -98,6 +99,7 @@ function App() {
             setRecords([...records, editingRecord]);
             setEditingRecord(null);
         }
+        setEditingRecordIndex(-1);
         toggleEditRecord(); // Hide the edit form
     };
 
