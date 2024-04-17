@@ -107,9 +107,9 @@ function App() {
             
             // Add the new record with updated details
             const newEditedRecord: Record = {
-                status: newRecord.status,
-                mancalldesc: newRecord.mancalldesc,
-                mancallto: newRecord.mancallto,
+                status: newRecord.status !== '' ? newRecord.status : editingRecord.status,
+                mancalldesc: newRecord.mancalldesc !== '' ? newRecord.mancalldesc : editingRecord.mancalldesc,
+                mancallto: newRecord.mancallto !== '' ? newRecord.mancallto : editingRecord.mancallto,
             };
             
             setRecords([...updatedRecords, newEditedRecord]);
@@ -336,6 +336,7 @@ function App() {
                                     className = {styles.colorlist}
                                     value     = {newRecord.status}
                                     onChange  = {handleInputChange}>
+                                        <option value="" disabled selected>Color</option>
                                         <option value = "Red">Red </option>
                                         <option value = "Yellow">Yellow</option>
                                         <option value = "Green">Green</option>
@@ -386,6 +387,7 @@ function App() {
                                     className = {styles.colorlist}
                                     value     = {newRecord.status}
                                     onChange  = {handleInputChange}>
+                                        <option value="" disabled selected>{editingRecord ? editingRecord.status : ""}</option>
                                         <option value = "Red">Red </option>
                                         <option value = "Yellow">Yellow</option>
                                         <option value = "Green">Green</option>
