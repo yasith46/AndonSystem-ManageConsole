@@ -877,3 +877,20 @@
   line-height: 1.5;
   color: #e6e6e6;
 }
+.deptnum {
+  grid-column-start: 4;
+  color: #ffffff;
+  line-height: 1.5;
+}
+.deptnumin {
+  grid-column-start: 4;
+  height: 6vh;
+  width: 10vw;
+  margin: 1vh 0vw;
+  padding: 0vw 0vw 0vw 2vw;
+  font-size: 3vh;
+  font-style: italic;
+  color: #b3b3b3;
+  border-radius: 0.7vw;
+  background-color: #3c3c3c;
+}
