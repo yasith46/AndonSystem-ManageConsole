@@ -19,6 +19,7 @@ interface Conrecord {
 }
 
 function App() {
+    // Funcrions to switch windows
     const [showDashboard, setShowDashboard] = useState(true);
     const [showManCall, setShowManCall] = useState(false);
     const [showManCon, setShowManCon] = useState(false);
@@ -52,6 +53,7 @@ function App() {
         setShowManDept(true);
     };
 
+    // Functions of 'Manage Calls' window
     const [callrecords, setCallrecords] = useState<Callrecord[]>([]);
 
     const [newCallrecord, setNewCallrecord] = useState<Callrecord>({
@@ -138,6 +140,8 @@ function App() {
         toggleEditCallrecord(); // Hide the edit form
     };
 
+
+    // Functions of 'Manage Consoles' window
     const [conrecords, setConrecords] = useState<Conrecord[]>([]);
 
     const [newConrecord, setNewConrecord] = useState<Conrecord>({
@@ -219,6 +223,8 @@ function App() {
         toggleEditConrecord(); // Hide the edit form
     };
 
+
+    // Functions of 'Manage Departments' window
     const [deptrecords, setDeptrecords] = useState<Deptrecord[]>([]);
 
     const [newDeptrecord, setNewDeptrecord] = useState<Deptrecord>({
