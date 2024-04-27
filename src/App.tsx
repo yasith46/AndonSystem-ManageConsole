@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
 
-interface Callrecord {
+interface Callrecord {      // Interface to save records of calls
     status: string;
     mancalldesc: string;
     mancallto: string;
 }
 
-interface Deptrecord {
+interface Deptrecord {      // Interface to save records of departments
     deptname: string;
     deptid: number;
 }
 
-interface Conrecord {
+interface Conrecord {       // Interface to save records of consoles
     conname: string;
     conid: number;
 }
-//testing wihtout pullreq
+
 function App() {
-    // Funcrions to switch windows
+    // ------------------------------ Funcrions to switch windows ------------------------------
+
+    // When set true, the div becomes visible
     const [showDashboard, setShowDashboard] = useState(true);
     const [showManCall, setShowManCall] = useState(false);
     const [showManCon, setShowManCon] = useState(false);
@@ -53,9 +55,13 @@ function App() {
         setShowManDept(true);
     };
 
-    // Functions of 'Manage Calls' window
-    const [callrecords, setCallrecords] = useState<Callrecord[]>([]);
 
+
+    // ------------------------------ Functions of 'Manage Calls' window ------------------------------
+
+    const [callrecords, setCallrecords] = useState<Callrecord[]>([]);   // Array of callrecords
+
+    // newCallrecord to when updating/adding a new callrecord
     const [newCallrecord, setNewCallrecord] = useState<Callrecord>({
         status: '',
         mancalldesc: '',
@@ -64,33 +70,39 @@ function App() {
 
     const [showAddCallrecord, setShowAddCallrecord] = useState(false);
 
+    // enters add mode
     const toggleAddCallrecord = () => {
         setNewCallrecord({ status: '', mancalldesc: '', mancallto: '' }); // Reset newCallrecord state
         setShowAddCallrecord(!showAddCallrecord);
     };
 
+    // Gets input to newCallrecord
     const handleCallInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewCallrecord({ ...newCallrecord, [name]: value });
     };
 
+    // saves the callrecord to callrecords 
     const handleAddCallrecord = () => {
         setCallrecords([...callrecords, newCallrecord]);
         setNewCallrecord({ status: '', mancalldesc: '', mancallto: '' });
         toggleAddCallrecord();
     };
 
+    // cancels adding the callrecord
     const handleCancelAddCallrecord = () => {
         setNewCallrecord({ status: '', mancalldesc: '', mancallto: '' });
         toggleAddCallrecord();
     };
 
+    // deletes a callrecord
     const handleDeleteCallrecord = (callIndex: number) => {
         const updatedCallrecords = [...callrecords];
         updatedCallrecords.splice(callIndex, 1); // Remove the record at the specified callIndex
         setCallrecords(updatedCallrecords);
     };
 
+    // Makes 'edit record' visible/invisible
     const [showEditCallrecord, setShowEditCallrecord] = useState(false);
 
     const toggleEditCallrecord = () => {
@@ -100,18 +112,21 @@ function App() {
     const [editingCallrecord, setEditingCallrecord] = useState<Callrecord | null>(null);
     const [editingCallrecordIndex, setEditingCallrecordIndex] = useState<number>(-1);
 
+    // Opens up details of an *existing* record in an edit callrecord div
     const handleEditCallrecord = (callIndex: number) => {
         setEditingCallrecord(callrecords[callIndex]);
         setEditingCallrecordIndex(callIndex); // Remember the callIndex of the record being edited
         toggleEditCallrecord();
     };
 
+    // cancels editing the record, reverts the changes that were being done
     const handleEditCancelCallrecord = () => {
         setEditingCallrecord(null);
         setEditingCallrecordIndex(-1);
         toggleEditCallrecord(); // Hide the edit form
     };
 
+    // saves the edited callrecord 
     const handleEditAddCallrecord = () => {
         if (editingCallrecord && editingCallrecordIndex !== -1) {
             // Remove the old record
@@ -141,9 +156,11 @@ function App() {
     };
 
 
-    // Functions of 'Manage Consoles' window
-    const [conrecords, setConrecords] = useState<Conrecord[]>([]);
+    // ------------------------------ Functions of 'Manage Consoles' window ------------------------------
 
+    const [conrecords, setConrecords] = useState<Conrecord[]>([]);  // Array of conrecords
+
+    // newConrecord to when updating/adding a new conrecord
     const [newConrecord, setNewConrecord] = useState<Conrecord>({
         conname: '',
         conid: 0,
@@ -151,33 +168,39 @@ function App() {
 
     const [showAddConrecord, setShowAddConrecord] = useState(false);
 
+    // enters add mode
     const toggleAddConrecord = () => {
         setNewConrecord({ conname: '', conid: 0 }); // Reset newConrecord state
         setShowAddConrecord(!showAddConrecord);
     };
 
+    // Gets input to newConrecord
     const handleConInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewConrecord({ ...newConrecord, [name]: value });
     };
 
+    // saves the conrecord to conrecords 
     const handleAddConrecord = () => {
         setConrecords([...conrecords, newConrecord]);
         setNewConrecord({ conname: '', conid: 0 });
         toggleAddConrecord();
     };
 
+    // cancels adding 
     const handleCancelAddConrecord = () => {
         setNewConrecord({ conname: '', conid: 0 });
         toggleAddConrecord();
     };
 
+    //Deletes record
     const handleDeleteConrecord = (conIndex: number) => {
         const updatedConrecords = [...conrecords];
         updatedConrecords.splice(conIndex, 1); // Remove the record at the specified conIndex
         setConrecords(updatedConrecords);
     };
 
+    // edit record mode
     const [showEditConrecord, setShowEditConrecord] = useState(false);
 
     const toggleEditConrecord = () => {
@@ -187,18 +210,21 @@ function App() {
     const [editingConrecord, setEditingConrecord] = useState<Conrecord | null>(null);
     const [editingConrecordIndex, setEditingConrecordIndex] = useState<number>(-1);
 
+    // Opens record in an edit div
     const handleEditConrecord = (conIndex: number) => {
         setEditingConrecord(conrecords[conIndex]);
         setEditingConrecordIndex(conIndex); // Remember the conIndex of the record being edited
         toggleEditConrecord();
     };
- //testing comment
+
+    // cancels editing record, reverts any changes
     const handleEditCancelConrecord = () => {
         setEditingConrecord(null);
         setEditingConrecordIndex(-1);
         toggleEditConrecord(); // Hide the edit form
     };
 
+    // saves the edited record
     const handleEditAddConrecord = () => {
         if (editingConrecord && editingConrecordIndex !== -1) {
             // Remove the old record
@@ -224,9 +250,12 @@ function App() {
     };
 
 
-    // Functions of 'Manage Departments' window
-    const [deptrecords, setDeptrecords] = useState<Deptrecord[]>([]);
 
+    // ------------------------------ Functions of 'Manage Departments' window ------------------------------
+
+    const [deptrecords, setDeptrecords] = useState<Deptrecord[]>([]); // Array of deptrecords
+
+    // new record to when adding/editing records
     const [newDeptrecord, setNewDeptrecord] = useState<Deptrecord>({
         deptname: '',
         deptid: 0,
@@ -234,33 +263,39 @@ function App() {
 
     const [showAddDeptrecord, setShowAddDeptrecord] = useState(false);
 
+    // enters add mode
     const toggleAddDeptrecord = () => {
         setNewDeptrecord({ deptname: '', deptid: 0 }); // Reset newCallrecord state
         setShowAddDeptrecord(!showAddDeptrecord);
     };
 
+    // gets input into new record
     const handleDeptInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewDeptrecord({ ...newDeptrecord, [name]: value });
     };
 
+    // saves the deptrecord to deptrecords
     const handleAddDeptrecord = () => {
         setDeptrecords([...deptrecords, newDeptrecord]);
         setNewDeptrecord({ deptname: '', deptid: 0 });
         toggleAddDeptrecord();
     };
 
+    // cancels adding
     const handleCancelAddDeptrecord = () => {
         setNewDeptrecord({ deptname: '', deptid: 0 });
         toggleAddDeptrecord();
     };
 
+    // deletes record
     const handleDeleteDeptrecord = (deptIndex: number) => {
         const updatedDeptrecords = [...deptrecords];
         updatedDeptrecords.splice(deptIndex, 1); // Remove the record at the specified deptIndex
         setDeptrecords(updatedDeptrecords);
     };
 
+    // edit mode
     const [showEditDeptrecord, setShowEditDeptrecord] = useState(false);
 
     const toggleEditDeptrecord = () => {
@@ -270,18 +305,21 @@ function App() {
     const [editingDeptrecord, setEditingDeptrecord] = useState<Deptrecord | null>(null);
     const [editingDeptrecordIndex, setEditingDeptrecordIndex] = useState<number>(-1);
 
+    // opens revord in edit div
     const handleEditDeptrecord = (deptIndex: number) => {
         setEditingDeptrecord(deptrecords[deptIndex]);
         setEditingDeptrecordIndex(deptIndex); // Remember the deptIndex of the record being edited
         toggleEditDeptrecord();
     };
 
+    // cancels editing, reverting changes
     const handleEditCancelDeptrecord = () => {
         setEditingDeptrecord(null);
         setEditingDeptrecordIndex(-1);
         toggleEditDeptrecord(); // Hide the edit form
     };
 
+    // saves the edited record
     const handleEditAddDeptrecord = () => {
         if (editingDeptrecord && editingDeptrecordIndex !== -1) {
             // Remove the old record
@@ -308,17 +346,22 @@ function App() {
 
 
 
-    return (
-        <div className={styles.App}>
+
+
+
+    // ------------------------------ the app ------------------------------
+
+    return(                                                                                     // Top bar
+        <div className={styles.App}> 
             <div className={styles.topbar}>
-                <h1 className={styles.logotext}>ANDON</h1>
+                <h1 className={styles.logotext}>ANDON</h1> 
                 <button className={styles.account}></button>
             </div>
 
-            <div className={styles.navbar}>
-                <button
+            <div className={styles.navbar}> 
+                <button                                                                         // Navigation bar
                     className={Classnames(styles.dashbutt, {
-                        [styles.navbutclicked]: showDashboard,
+                        [styles.navbutclicked]: showDashboard, 
                     })}
                     onClick={toggleDashboardVisibility}
                 >
@@ -353,16 +396,16 @@ function App() {
                 </button>
             </div>
 
-            {showDashboard && (
+            {showDashboard && (                                                             // Dasboard
                 <div className={styles.dashboard}>
                     <h1 className={styles.boardname}>Dashboard</h1>
-                    <div className={styles.graph}>
-                        <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
+                    <div className={styles.graph}>                                          
+                        <h3 className={styles.cardtitle}>Daily Andon Calls </h3>            
                     </div>
                     <div className={styles.stats}>
                         <h3 className={styles.cardtitle}>Stats</h3>
                         <div className={styles.statgrid}>
-                            <h1 className={styles.statname}>Downtime for the day</h1>
+                            <h1 className={styles.statname}>Downtime for the day</h1>   
                             <h1 className={styles.statnum}>02:10:00 </h1>
                             <h1 className={styles.statname}>Average Rise time</h1>
                             <h1 className={styles.statbad}>12:25 </h1>
@@ -445,7 +488,7 @@ function App() {
                 </div>
             )}
 
-            {showManCall && (
+            {showManCall && (                                                               // Manage Calls
                 <div className={styles.managecalls}>
                     <h1 className={styles.boardname}>Manage Calls</h1>
 
@@ -456,7 +499,7 @@ function App() {
                         <h1 className={styles.coltitletext}>Call To</h1>
                     </div>
 
-                    {callrecords.map((callrecord, callIndex) => (
+                    {callrecords.map((callrecord, callIndex) => (                           // Display calls
                         <div key={callIndex}>
                             {callIndex !== editingCallrecordIndex && (
                                 <div className={styles.managecallcard}>
@@ -508,7 +551,7 @@ function App() {
                         </div>
                     ))}
 
-                    {showAddCallrecord && (
+                    {showAddCallrecord && (                                                 // Add call div
                         <div className={Classnames(styles.managecallcard, styles.cardedit)}>
                             <h1 className={styles.cardedittitle}>Add Call</h1>
                             <div className={styles.coltitle}>
@@ -551,7 +594,7 @@ function App() {
                                     >
                                         <img
                                             src="/src/assets/check.svg"
-                                            alt=""
+                                            alt="" 
                                             className={styles.editsvg}
                                         />
                                     </button>
@@ -570,7 +613,7 @@ function App() {
                         </div>
                     )}
 
-                    {editingCallrecord && (
+                    {editingCallrecord && (                                                 // Edit Call div
                         <div className={Classnames(styles.managecallcard, styles.cardedit)}>
                             <h1 className={styles.cardedittitle}>Edit Call</h1>
                             <div className={styles.coltitle}>
@@ -638,7 +681,7 @@ function App() {
                         </div>
                     )}
 
-                    {!showAddCallrecord && !editingCallrecord && (
+                    {!showAddCallrecord && !editingCallrecord && (                          // Add button
                         <button className={styles.addbutton} onClick={toggleAddCallrecord}>
                             Add Calls +
                         </button>
@@ -646,7 +689,7 @@ function App() {
                 </div>
             )}
 
-            {showManCon && (
+            {showManCon && (                                                                // Manage consoles
                 <div className={styles.manageconsoles}>
                     <h1 className={styles.boardname}>Manage Consoles</h1>
                     <div className={styles.coltitle}>
@@ -655,7 +698,7 @@ function App() {
                         <h1 className={styles.coltitletext}>Console ID</h1>
                     </div>
 
-                    {conrecords.map((conrecord, conIndex) => (
+                    {conrecords.map((conrecord, conIndex) => (                              // displays consoles
                         <div key={conIndex}>
                             {conIndex !== editingConrecordIndex && (
                                 <div className={Classnames(styles.managecallcard, styles.con)}>
@@ -689,7 +732,7 @@ function App() {
                         </div>
                     ))}
 
-                    {showAddConrecord && (
+                    {showAddConrecord && (                                                  // Add div
                         <div className={Classnames(styles.managecallcard, styles.con, styles.edit2)}>
                             <h1 className={styles.cardedittitle}>Edit </h1>
                             <div className={styles.coltitle}>
@@ -729,7 +772,7 @@ function App() {
                         </div>
                     )}
 
-                    {editingConrecord && (
+                    {editingConrecord && (                                                  // edit div
                         <div className={Classnames(styles.managecallcard, styles.con, styles.edit2)}>
                             <h1 className={styles.cardedittitle}>Edit </h1>
                             <div className={styles.coltitle}>
@@ -773,7 +816,7 @@ function App() {
                         </div>
                     )}
 
-                    {!showAddConrecord && !editingConrecord && (
+                    {!showAddConrecord && !editingConrecord && (                            // Add button
                         <button className={styles.addbutton} onClick={toggleAddConrecord}>
                             Add Consoles +
                         </button>
@@ -781,7 +824,7 @@ function App() {
                 </div>
             )}
 
-            {showManDept && (
+            {showManDept && (                                                               // Manage departments
                 <div className={styles.managedepts}>
                     <h1 className={styles.boardname}>Manage Users</h1>
                     <div className={styles.coltitle}>
@@ -791,7 +834,7 @@ function App() {
                         </h1>
                     </div>
 
-                    {deptrecords.map((deptrecord, deptIndex) => (
+                    {deptrecords.map((deptrecord, deptIndex) => (                           // displays departments
                         <div key={deptIndex}>
                             {deptIndex !== editingDeptrecordIndex && (
                                 <div className={Classnames(styles.managecallcard, styles.dep1)}>
@@ -826,7 +869,7 @@ function App() {
                         </div>
                     ))}
 
-                    {showAddDeptrecord && (
+                    {showAddDeptrecord && (                                                 // Add div
                         <div
                             className={Classnames(
                                 styles.managecallcard,
@@ -874,7 +917,7 @@ function App() {
                         </div>
                     )}
 
-                    {editingDeptrecord && (
+                    {editingDeptrecord && (                                                  // edit div
                         <div
                             className={Classnames(
                                 styles.managecallcard,
@@ -936,7 +979,7 @@ function App() {
                         </div>
                     )}
 
-                    {!showAddDeptrecord && !editingDeptrecord && (
+                    {!showAddDeptrecord && !editingDeptrecord && (                            // Add button
                         <button className={styles.addbutton} onClick={toggleAddDeptrecord}>
                             Add Departments +
                         </button>
@@ -948,4 +991,3 @@ function App() {
 }
 
 export default App;
-// test1
