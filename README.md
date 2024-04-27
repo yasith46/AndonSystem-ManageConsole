@@ -3,13 +3,14 @@
     <h1><img height="30" src="./src/assets/vite.svg"> Vite template for Codux</h1>
 </div>
 
-### A Visual IDE for React Projects
+### Manager Console for the Andon System
+Made for the project: <b>Wireless Reconfigurable Andon System with Maintenance Prediction</b>, done in partial fulfillment of the requirements for the module <i>EN 2160 Engineering Design Realization.</i>
+
+The above works were done by Silva M.K.Y.U.N (@yasith46) and Senavirathne I.U.B. (@isuranga1). For making of the GUI, <b>Codux</b> was used.
 
 Codux is an all-in-one visual development environment. Whether you’re starting a new app, creating components, or editing an existing project, every visual change you make reflects instantly in the code and vice versa. To learn more about Codux, visit our website - [https://www.codux.com/](https://www.codux.com/)
 
-This project was bootstrapped with [`Vite`](https://vitejs.dev).
-
-It includes a single React component to start your project with, a sample [`codux.config.json`](codux.config.json) with preconfigured keys, a `package.json` file to describe the project's packages and dependencies, and a folder and component structure to put everything neatly in its place.
+This project was bootstrapped with [`Vite`](https://vitejs.dev). It includes a single React component to start your project with, a sample [`codux.config.json`](codux.config.json) with preconfigured keys, a `package.json` file to describe the project's packages and dependencies, and a folder and component structure to put everything neatly in its place.
 
 - Edit, render and compose apps that make use of **`React`**-based components.
 - Create components with **`TypeScript`**, **`SCSS`** and **`CSS Modules`** support.
