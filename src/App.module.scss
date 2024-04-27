@@ -347,9 +347,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   padding-left: 3vw;
   color: #787878;
-  grid-row-end: 4;
   align-items: start;
-  grid-row-start: 3;
 }
 
 .coltitletext {
@@ -706,14 +704,15 @@
   background-color: #3c3c3c;
   border: 1px solid #1a1a1a;
   border-radius: 0.7vw;
-  margin: 0vh 5vw 2vh 0vw;
-  grid-column-start: 2;
-  grid-column-end: 4;
+  margin: 0vh 1vw 2vh 0vw;
+  grid-column-start: 3;
   padding: 0vh 2vh;
   font-size: 3vh;
   color: #b3b3b3;
   height: 6vh;
   font-style: italic;
+  grid-column-end: 4;
+  width: 12vw;
 }
 .conin {
   background-color: #3c3c3c;
@@ -768,9 +767,9 @@
 }
 .edit2 {
   display: grid;
-  grid-template-rows: 2fr 2fr 20fr;
+  grid-template-rows: 2fr 3fr;
   padding-bottom: 0vw;
-  height: 40vh;
+  height: 15vh;
 }
 .button2 {
 }
@@ -870,6 +869,7 @@
   font-style: normal;
   color: #e6e6e6;
   margin-left: 1vw;
+  grid-column-start: 3;
 }
 .temp {
 }
@@ -893,4 +893,8 @@
   color: #b3b3b3;
   border-radius: 0.7vw;
   background-color: #3c3c3c;
+}
+.deptnumtit {
+  grid-column-start: 4;
+  margin-left: 0vw;
 }
