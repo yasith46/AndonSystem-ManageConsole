@@ -1,10 +1,9 @@
 <div align="center">  
-    <img height="150" src="./src/assets/logo (1).png">
-    <h2>Department of Electronics and Telecommunications, University of Moratuwa</h2>
-    <h3><img height="25" src="./src/assets/vite.svg"><img height="25" src="./src/assets/codux.svg">  Manager Console for the Andon System</h3>
+    <img height="200" src="./src/assets/logo (1).png">
+    <h3>Department of Electronics and Telecommunications<br>University of Moratuwa</h3>
+    <h3><img height="20" src="./src/assets/vite.svg"><img height="20" src="./src/assets/codux.svg">  Manager Console for the Andon System</h3>
+    <b>Wireless Reconfigurable Andon System with Maintenance Prediction</b><br>Done in partial fulfillment of the requirements for the module <i>EN 2160 Engineering Design Realization.</i>
 </div>
-
-Made for the project: <b>Wireless Reconfigurable Andon System with Maintenance Prediction</b>, done in partial fulfillment of the requirements for the module <i>EN 2160 Engineering Design Realization.</i>
 
 The above works were done by Silva M.K.Y.U.N (@yasith46) and Senavirathne I.U.B. (@isuranga1). For making of the GUI, <b>Codux</b> was used.
 
