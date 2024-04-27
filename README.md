@@ -1,7 +1,7 @@
 <div align="center">  
-    <img height="50" src="./src/assets/logo (1).png">
+    <img height="150" src="./src/assets/logo (1).png">
     <h2>Department of Electronics and Telecommunications, University of Moratuwa</h2>
-    <h2><img height="25" src="./src/assets/vite.svg"><img height="25" src="./src/assets/codux.svg">Manager Console for the Andon System</h2>
+    <h3><img height="25" src="./src/assets/vite.svg"><img height="25" src="./src/assets/codux.svg">  Manager Console for the Andon System</h3>
 </div>
 
 Made for the project: <b>Wireless Reconfigurable Andon System with Maintenance Prediction</b>, done in partial fulfillment of the requirements for the module <i>EN 2160 Engineering Design Realization.</i>
