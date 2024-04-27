@@ -5,6 +5,7 @@
     <b>Wireless Reconfigurable Andon System with Maintenance Prediction</b><br>Done in partial fulfillment of the requirements for the module <i>EN 2160 Engineering Design Realization.</i>
 </div>
 
+<br>
 The above works were done by Silva M.K.Y.U.N (@yasith46) and Senavirathne I.U.B. (@isuranga1). For making of the GUI, <b>Codux</b> was used.
 
 Codux is an all-in-one visual development environment. Whether you’re starting a new app, creating components, or editing an existing project, every visual change you make reflects instantly in the code and vice versa.
