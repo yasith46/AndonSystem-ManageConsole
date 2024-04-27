@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
+import  Axios  from 'axios'; // used to communicate with backend
 
 interface Callrecord {      // Interface to save records of calls
     status: string;
