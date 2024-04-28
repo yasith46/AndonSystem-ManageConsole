@@ -62,6 +62,48 @@ function App() {
     // ------------------------------ Functions of 'Manage Calls' window ------------------------------
 
     const [callrecords, setCallrecords] = useState<Callrecord[]>([]);   // Array of callrecords
+    
+    
+    useEffect(() => {         // fetching the data from database when the page refreshes
+        Axios.get("http://localhost:3002/getCalls")
+          .then((response) => {
+            const mappedcalls = response.data.map((item: { Color: string; Description: string , CallTo: string}) => ({
+              status: item.Color,
+              mancalldesc: item.Description,
+              mancallto: item.CallTo
+            }));
+            setCallrecords(mappedcalls); // Update conrecords state
+          })
+          .catch((error) => {
+            console.error("Error fetching calls:", error);
+          });
+      }, []);
+
+
+    const createcall =(Color:String,Description:String,CallTo:String)=>{ // sending user input data to backend
+        Axios.post("http://localhost:3002/createCall",{
+            Color,
+            Description,
+            CallTo
+
+        }).then((response)=>{
+
+
+        });
+
+    };
+
+    const deletecall =(Color:String,Description:String,CallTo:String)=>{ // sending user input data to backend to delete
+        Axios.post("http://localhost:3002/deletecall",{
+            Color,
+            Description,
+            CallTo
+        }).then((response)=>{
+            
+
+        });
+
+    };
 
     // newCallrecord to when updating/adding a new callrecord
     const [newCallrecord, setNewCallrecord] = useState<Callrecord>({
@@ -86,6 +128,7 @@ function App() {
 
     // saves the callrecord to callrecords 
     const handleAddCallrecord = () => {
+        createcall(newCallrecord.status,newCallrecord.mancalldesc,newCallrecord.mancallto);
         setCallrecords([...callrecords, newCallrecord]);
         setNewCallrecord({ status: '', mancalldesc: '', mancallto: '' });
         toggleAddCallrecord();
@@ -100,6 +143,7 @@ function App() {
     // deletes a callrecord
     const handleDeleteCallrecord = (callIndex: number) => {
         const updatedCallrecords = [...callrecords];
+        deletecall(callrecords[callIndex].status,callrecords[callIndex].mancalldesc,callrecords[callIndex].mancallto);
         updatedCallrecords.splice(callIndex, 1); // Remove the record at the specified callIndex
         setCallrecords(updatedCallrecords);
     };
@@ -135,6 +179,7 @@ function App() {
             const updatedCallrecords = callrecords.filter(
                 (callrecord, callIndex) => callIndex !== editingCallrecordIndex,
             );
+            deletecall(editingCallrecord.status,editingCallrecord.mancalldesc,editingCallrecord.mancallto);
 
             // Add the new record with updated details
             const newEditedCallrecord: Callrecord = {
@@ -151,6 +196,7 @@ function App() {
             };
 
             setCallrecords([...updatedCallrecords, newEditedCallrecord]);
+            createcall(newEditedCallrecord.status,newEditedCallrecord.mancalldesc,newEditedCallrecord.mancallto);
             setEditingCallrecord(null); // Clear the editing state
             setEditingCallrecordIndex(-1); // Reset the editing callIndex
         }
@@ -303,6 +349,45 @@ function App() {
 
     const [deptrecords, setDeptrecords] = useState<Deptrecord[]>([]); // Array of deptrecords
 
+    useEffect(() => {         // fetching the data from database when the page refreshes
+        Axios.get("http://localhost:3002/getUsers")
+          .then((response) => {
+            const mappedUsers = response.data.map((item: { name: string; deptnumber: number }) => ({
+              deptname: item.name,
+              deptid: item.deptnumber,
+            }));
+            setDeptrecords(mappedUsers); // Update conrecords state
+          })
+          .catch((error) => {
+            console.error("Error fetching users:", error);
+          });
+      }, []);
+
+
+    const createuserrecord =(name:String,deptnumber:Number)=>{ // sending user input data to backend
+        Axios.post("http://localhost:3002/createUser",{
+            name,
+            deptnumber,
+
+        }).then((response)=>{
+
+
+        });
+
+    };
+
+    const deleteuserrecord =(name:String,deptnumber:Number)=>{ // sending user input data to backend to delete
+        Axios.post("http://localhost:3002/deleteuser",{
+            name,
+            deptnumber,
+        }).then((response)=>{
+            
+
+        });
+
+    };
+
+
     // new record to when adding/editing records
     const [newDeptrecord, setNewDeptrecord] = useState<Deptrecord>({
         deptname: '',
@@ -326,6 +411,7 @@ function App() {
     // saves the deptrecord to deptrecords
     const handleAddDeptrecord = () => {
         setDeptrecords([...deptrecords, newDeptrecord]);
+        createuserrecord(newDeptrecord.deptname,newDeptrecord.deptid);
         setNewDeptrecord({ deptname: '', deptid: 0 });
         toggleAddDeptrecord();
     };
@@ -339,6 +425,7 @@ function App() {
     // deletes record
     const handleDeleteDeptrecord = (deptIndex: number) => {
         const updatedDeptrecords = [...deptrecords];
+        deleteuserrecord(deptrecords[deptIndex].deptname,deptrecords[deptIndex].deptid);
         updatedDeptrecords.splice(deptIndex, 1); // Remove the record at the specified deptIndex
         setDeptrecords(updatedDeptrecords);
     };
@@ -374,7 +461,7 @@ function App() {
             const updatedDeptrecords = deptrecords.filter(
                 (deptrecord, deptIndex) => deptIndex !== editingDeptrecordIndex,
             );
-
+            deleteuserrecord(editingDeptrecord.deptname,editingDeptrecord.deptid);
             // Add the new record with updated details
             const newEditedDeptrecord: Deptrecord = {
                 deptname:
@@ -386,6 +473,7 @@ function App() {
             };
 
             setDeptrecords([...updatedDeptrecords, newEditedDeptrecord]);
+            createuserrecord(newEditedDeptrecord.deptname,newEditedDeptrecord.deptid);
             setEditingDeptrecord(null); // Clear the editing state
             setEditingDeptrecordIndex(-1); // Reset the editing deptIndex
         }
