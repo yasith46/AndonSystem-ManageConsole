@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
+import  Axios  from 'axios'; // used to communicate with backend
+import axios from 'axios';
 
 interface Callrecord {      // Interface to save records of calls
     status: string;
@@ -160,6 +162,26 @@ function App() {
 
     const [conrecords, setConrecords] = useState<Conrecord[]>([]);  // Array of conrecords
 
+   // useEffect(()=>{
+      //  Axios.get("http://localhost:3002/createMachine").then((response)=>{
+     //       setConrecords(...conrecords,response.data);
+      //  });
+
+  //  },[]);
+
+
+
+    const createconrecord =(machine:String,consoleid:Number)=>{
+        Axios.post("http://localhost:3002/createMachine",{
+            machine,
+            consoleid,
+
+        }).then((response)=>{
+
+
+        });
+
+    };
     // newConrecord to when updating/adding a new conrecord
     const [newConrecord, setNewConrecord] = useState<Conrecord>({
         conname: '',
@@ -178,10 +200,12 @@ function App() {
     const handleConInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewConrecord({ ...newConrecord, [name]: value });
+        
     };
 
     // saves the conrecord to conrecords 
     const handleAddConrecord = () => {
+        createconrecord(newConrecord.conname,newConrecord.conid);
         setConrecords([...conrecords, newConrecord]);
         setNewConrecord({ conname: '', conid: 0 });
         toggleAddConrecord();
