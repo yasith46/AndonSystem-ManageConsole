@@ -488,7 +488,7 @@ socket.on("connect", () => {
     console.log("Connected to server");
   });
   socket.on("integer_received", (receivedValue) => {
-    console.log("Received integer value:", receivedValue);
+    console.log(receivedValue);
     });
 
 
