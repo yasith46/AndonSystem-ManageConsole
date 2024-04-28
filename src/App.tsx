@@ -162,16 +162,23 @@ function App() {
 
     const [conrecords, setConrecords] = useState<Conrecord[]>([]);  // Array of conrecords
 
-   // useEffect(()=>{
-      //  Axios.get("http://localhost:3002/createMachine").then((response)=>{
-     //       setConrecords(...conrecords,response.data);
-      //  });
+    
+    useEffect(() => {         // fetching the data from database when the page refreshes
+        Axios.get("http://localhost:3002/getMachines")
+          .then((response) => {
+            const mappedConrecords = response.data.map((item: { machine: string; consoleid: number }) => ({
+              conname: item.machine,
+              conid: item.consoleid,
+            }));
+            setConrecords(mappedConrecords); // Update conrecords state
+          })
+          .catch((error) => {
+            console.error("Error fetching machines:", error);
+          });
+      }, []);
 
-  //  },[]);
 
-
-
-    const createconrecord =(machine:String,consoleid:Number)=>{
+    const createconrecord =(machine:String,consoleid:Number)=>{ // sending user input data to backend
         Axios.post("http://localhost:3002/createMachine",{
             machine,
             consoleid,
@@ -182,6 +189,21 @@ function App() {
         });
 
     };
+
+    const deleteconrecord =(machine:String,consoleid:Number)=>{ // sending user input data to backend to delete
+        Axios.post("http://localhost:3002/deletemachine",{
+            machine,
+            consoleid,
+        }).then((response)=>{
+            
+
+        });
+
+    };
+
+
+    
+
     // newConrecord to when updating/adding a new conrecord
     const [newConrecord, setNewConrecord] = useState<Conrecord>({
         conname: '',
@@ -220,6 +242,7 @@ function App() {
     //Deletes record
     const handleDeleteConrecord = (conIndex: number) => {
         const updatedConrecords = [...conrecords];
+        deleteconrecord(conrecords[conIndex].conname,conrecords[conIndex].conid);
         updatedConrecords.splice(conIndex, 1); // Remove the record at the specified conIndex
         setConrecords(updatedConrecords);
     };
@@ -255,7 +278,7 @@ function App() {
             const updatedConrecords = conrecords.filter(
                 (conrecord, conIndex) => conIndex !== editingConrecordIndex,
             );
-
+            deleteconrecord(editingConrecord.conname,editingConrecord.conid);//delete from database
             // Add the new record with updated details
             const newEditedConrecord: Conrecord = {
                 conname:
@@ -267,6 +290,7 @@ function App() {
             };
 
             setConrecords([...updatedConrecords, newEditedConrecord]);
+            createconrecord(newEditedConrecord.conname,newEditedConrecord.conid); //add to database
             setEditingConrecord(null); // Clear the editing state
             setEditingConrecordIndex(-1); // Reset the editing deptIndex
         }
