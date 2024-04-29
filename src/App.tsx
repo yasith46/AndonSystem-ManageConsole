@@ -3,6 +3,9 @@ import styles from './App.module.scss';
 import Classnames from 'classnames';
 import  Axios  from 'axios'; // used to communicate with backend
 import axios from 'axios';
+import { io, Socket } from "socket.io-client";
+
+const socket: Socket = io("http://localhost:3001");
 
 interface Callrecord {      // Interface to save records of calls
     status: string;
@@ -480,9 +483,13 @@ function App() {
         toggleEditDeptrecord(); // Hide the edit form
     };
 
-
-
-
+//----------------------------socketio connection----------------------
+socket.on("connect", () => {
+    console.log("Connected to server");
+  });
+  socket.on("integer_received", (receivedValue) => {
+    console.log(receivedValue);
+    });
 
 
     // ------------------------------ the app ------------------------------
