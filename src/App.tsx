@@ -30,6 +30,7 @@ interface ActiveCallRecord {
     consoleid: number;
     callhours: number;
     collmints: number;
+    department: number;
     call1: string;
     call2: string;
     call3: string;
@@ -79,6 +80,7 @@ function App() {
             consoleid: 215,
             callhours: 12,
             collmints: 15,
+            department: 14,
             call1: '',
             call2: '',
             call3: 'White',
@@ -87,6 +89,7 @@ function App() {
             consoleid: 256,
             callhours: 1,
             collmints: 15,
+            department: 15,
             call1: '',
             call2: '',
             call3: '',
@@ -588,10 +591,18 @@ function App() {
                                         {((activeCallRecord.call1!='') || (activeCallRecord.call2!='') || (activeCallRecord.call3!='')) && ( // If not attended
                                             <div className={styles.callsat}>
                                                 <div className={styles.callsatleft}>
-                                                    <h1 className={styles.machinenum}>{activeCallRecord.consoleid}</h1>
-                                                    <h3 className={styles.department}>Sewing Department</h3>
+                                                    <h1 className={styles.machinenum}>
+                                                        {conrecords.find(record => record.conid == activeCallRecord.consoleid)?.conname || 'Undefined'}
+                                                    </h1>
+                                                    <h3 className={styles.department}>
+                                                        {deptrecords.find(record => record.deptid == activeCallRecord.department)?.deptname || 'Undefined'}
+                                                    </h3>
                                                     <h2 className={styles.calltotext}>Andon Call to</h2>
-                                                    <h3 className={styles.callto}>CNC Tech</h3>
+                                                    <h3 className={styles.callto}>
+                                                        {activeCallRecord.call1 && (callrecords.find(record => record.status === activeCallRecord.call1)?.mancallto || 'Undefined')}
+                                                        {activeCallRecord.call2 && (callrecords.find(record => record.status === activeCallRecord.call2)?.mancallto || 'Undefined')}
+                                                        {activeCallRecord.call3 && (callrecords.find(record => record.status === activeCallRecord.call3)?.mancallto || 'Undefined')}
+                                                    </h3>
                                                 </div>
                                                 <div className={styles.callsatright}>
                                                     <div className={styles.timeblock}>
@@ -605,8 +616,12 @@ function App() {
                                         {(activeCallRecord.call1=='') && (activeCallRecord.call2=='') && (activeCallRecord.call3=='') && (
                                             <div className={styles.att}>
                                                 <div className={styles.callsatleft}>
-                                                    <h1 className={styles.machinenum}>{activeCallRecord.consoleid}</h1>
-                                                    <h3 className={styles.department}>Sewing Department</h3>
+                                                    <h1 className={styles.machinenum}>
+                                                        {conrecords.find(record => record.conid == activeCallRecord.consoleid)?.conname || 'Undefined'}
+                                                    </h1>
+                                                    <h3 className={styles.department}>
+                                                        {deptrecords.find(record => record.deptid == activeCallRecord.department)?.deptname || 'Undefined'}
+                                                    </h3>
                                                 </div>
                                                 <div className={styles.callsatright}>
                                                     <div className={styles.timeblock}>
