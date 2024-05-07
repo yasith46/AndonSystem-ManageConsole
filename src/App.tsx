@@ -34,6 +34,7 @@ interface ActiveCallRecord {
     call1: string;
     call2: string;
     call3: string;
+    oldcall: string;
 }
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
             call1: '',
             call2: '',
             call3: 'White',
+            oldcall:''
         },
         {
             consoleid: 256,
@@ -93,9 +95,29 @@ function App() {
             call1: '',
             call2: '',
             call3: '',
+            oldcall: 'Yellow'
         },
         // Add more call records as needed
     ];
+
+    const determineBackgroundColor = (call1: string, call2: string, call3:string) => {
+        if (call1 === 'Red') return 'red';
+        if (call1 === 'Yellow') return 'yellow';
+        if (call1 === 'Green') return 'green';
+        if (call1 === 'Blue') return 'blue';
+        if (call1 === 'White') return 'white';
+        if (call2 === 'Red') return 'red';
+        if (call2 === 'Yellow') return 'yellow';
+        if (call2 === 'Green') return 'green';
+        if (call2 === 'Blue') return 'blue';
+        if (call2 === 'White') return 'white';
+        if (call3 === 'Red') return 'red';
+        if (call3 === 'Yellow') return 'yellow';
+        if (call3 === 'Green') return 'green';
+        if (call3 === 'Blue') return 'blue';
+        if (call3 === 'White') return 'white';
+        return '#ffb70f'; // Default color if none of the conditions are met
+    };
 
     // ------------------------------ Functions of 'Manage Calls' window ------------------------------
 
@@ -607,7 +629,7 @@ function App() {
                                                 <div className={styles.callsatright}>
                                                     <div className={styles.timeblock}>
                                                         <h1 className={styles.time}>{activeCallRecord.callhours}:{activeCallRecord.collmints}</h1>
-                                                        <div className={styles.status} />
+                                                        <div className={styles.status} style={{backgroundColor: determineBackgroundColor(activeCallRecord.call1, activeCallRecord.call2, activeCallRecord.call3)}}/>
                                                     </div>
                                                     <h1 className={styles.attended}>Not Attended Yet</h1>
                                                 </div>
@@ -626,7 +648,7 @@ function App() {
                                                 <div className={styles.callsatright}>
                                                     <div className={styles.timeblock}>
                                                         <h1 className={styles.time}>{activeCallRecord.callhours}:{activeCallRecord.collmints}</h1>
-                                                        <div className={styles.status} />
+                                                        <div className={styles.status} style={{backgroundColor: determineBackgroundColor(activeCallRecord.oldcall, activeCallRecord.call2, activeCallRecord.call3)}}/>
                                                     </div>
                                                 </div>
                                             </div>
