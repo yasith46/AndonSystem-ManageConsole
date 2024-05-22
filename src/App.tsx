@@ -4,6 +4,7 @@ import Classnames from 'classnames';
 import Axios from 'axios'; // used to communicate with backend
 import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
+import LineGraph from './LineGraph';
 
 const socket: Socket = io('http://localhost:3001');
 
@@ -585,6 +586,12 @@ function App() {
                     <h1 className={styles.boardname}>Dashboard</h1>
                     <div className={styles.graph}>
                         <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
+                        <LineGraph data={[{ x: 0, y: 1 }, 
+                                          { x: 2, y: 2 }, 
+                                          { x: 3, y: 1 }, 
+                                          { x: 4, y: 2 },
+                                          { x: 5, y: 5 },
+                                          { x: 6, y: 1 }]} />
                     </div>
                     <div className={styles.stats}>
                         <h3 className={styles.cardtitle}>Stats</h3>
