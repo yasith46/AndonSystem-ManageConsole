@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './App.module.scss';
 import Classnames from 'classnames';
 import Axios from 'axios'; // used to communicate with backend
-import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
 import LineGraph from './LineGraph';
 
@@ -77,6 +76,37 @@ function App() {
 
     const [activeCallRecords, setActiveCallRecords] = useState<ActiveCallRecord[]>([]); // Array of callrecords
 
+    useEffect(() => {
+        // Getting active calls when the page refreshes
+        Axios.get('http://localhost:3002/getActiveCalls')
+            .then((response) => {
+                const mappedActiveCalls = response.data.map(
+                    (item: { consoleidin: number;
+                             callhoursin: number;
+                             collmintsin: number;
+                             departmentin: number;
+                             call1in: string;
+                             call2in: string;
+                             call3in: string;
+                             oldcallin: string }) => ({
+                        consoleid: item.consoleidin,
+                        callhours: item.callhoursin,
+                        collmints: item.collmintsin,
+                        department: item.departmentin,
+                        call1: item.call1in,
+                        call2: item.call2in,
+                        call3: item.call3in,
+                        oldcall: item.oldcallin,
+                    }),
+                );
+                setActiveCallRecords(mappedActiveCalls); // Update conrecords state
+            })
+            .catch((error) => {
+                console.error('Error fetching calls:', error);
+            });
+    }, []);
+
+    /*
     const testActiveCallRecords: ActiveCallRecord[] = [
         {
             consoleid: 215,
@@ -99,7 +129,7 @@ function App() {
             oldcall: 'Yellow'
         },
         // Add more call records as needed
-    ];
+    ];*/
 
     const determineBackgroundColor = (call1: string, call2: string, call3:string) => {
         if (call1 === 'Red') return 'red';
@@ -529,8 +559,15 @@ function App() {
     socket.on('connect', () => {
         console.log('Connected to server');
     });
-    socket.on('integer_received', (receivedValue) => {
-        console.log(receivedValue);
+    socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
+        console.log(receivedCallUpdate);
+        if (receivedCallUpdate.oldcall === '') {
+            setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
+        } else {
+            // change so that it deletes the record before adding
+            setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
+        }
+        
     });
 
     // ------------------------------ the app ------------------------------
@@ -611,7 +648,7 @@ function App() {
                     <div className={styles.currentcalls}>
                         <h3 className={styles.cardtitle}>Current Andon Calls</h3>
                         <div className={styles.calls}>
-                            {testActiveCallRecords.map(
+                            {activeCallRecords.map(
                                 (
                                     activeCallRecord,
                                     activeCallIndex, // Display calls
