@@ -37,6 +37,11 @@ interface ActiveCallRecord {
     oldcall: string;
 }
 
+interface GraphData {
+    x: number;
+    y: number;
+}
+
 function App() {
     // ------------------------------ Funcrions to switch windows ------------------------------
 
@@ -73,6 +78,38 @@ function App() {
         setShowManCon(false);
         setShowManDept(true);
     };
+
+    const [graphData, setGraphData] = useState<GraphData[]>([]);
+
+    useEffect(() => {
+        // fetching the data from database when the page refreshes
+        Axios.get('http://localhost:3002/getGraph')
+            .then((response) => {
+                setGraphData(response.data); // Update conrecords state
+            })
+            .catch((error) => {
+                console.error('Error fetching users:', error);
+            });
+    }, []);
+
+    const increasevalue = () => { // Increase graph today's value by one
+        setGraphData(prevGraphData => {
+            const index = prevGraphData.findIndex(entry => entry.x === 6);
+            if (index !== -1) {
+                const updatedGraphData = [...prevGraphData];
+                updatedGraphData[index] = {...updatedGraphData[index], y: updatedGraphData[index].y + 1};
+                return updatedGraphData;
+            }
+            return prevGraphData;
+        });
+    }
+
+    /*const graphData = [{ x: 0, y: 1 }, 
+                       { x: 2, y: 2 }, 
+                       { x: 3, y: 1 }, 
+                       { x: 4, y: 2 },
+                       { x: 5, y: 5 },
+                       { x: 6, y: 1 }];*/
 
     const [activeCallRecords, setActiveCallRecords] = useState<ActiveCallRecord[]>([]); // Array of callrecords
 
@@ -114,6 +151,7 @@ function App() {
         console.log(receivedCallUpdate);
         if (receivedCallUpdate.oldcall === '') {
             setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
+            increasevalue();
         } else {
             // change so that it deletes the record before adding
             setActiveCallRecords(prevActiveCallRecords => {
@@ -630,12 +668,7 @@ function App() {
                     <h1 className={styles.boardname}>Dashboard</h1>
                     <div className={styles.graph}>
                         <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
-                        <LineGraph data={[{ x: 0, y: 1 }, 
-                                          { x: 2, y: 2 }, 
-                                          { x: 3, y: 1 }, 
-                                          { x: 4, y: 2 },
-                                          { x: 5, y: 5 },
-                                          { x: 6, y: 1 }]} />
+                        <LineGraph data={graphData} />
                     </div>
                     <div className={styles.stats}>
                         <h3 className={styles.cardtitle}>Stats</h3>
