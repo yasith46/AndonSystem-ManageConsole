@@ -106,6 +106,28 @@ function App() {
             });
     }, []);
 
+    //----------------------------socketio connection----------------------
+    socket.on('connect', () => {
+        console.log('Connected to server');
+    });
+    socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
+        console.log(receivedCallUpdate);
+        if (receivedCallUpdate.oldcall === '') {
+            setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
+        } else {
+            // change so that it deletes the record before adding
+            setActiveCallRecords(prevActiveCallRecords => {
+                const filteredRecords = prevActiveCallRecords.filter(record => {
+                    const isSameConsole = record.consoleid === receivedCallUpdate.consoleid;
+                    const isMatchingCall = record.call1 === receivedCallUpdate.oldcall || record.call2 === receivedCallUpdate.oldcall || record.call3 === receivedCallUpdate.oldcall;
+                    return(isSameConsole && isMatchingCall);
+                });
+                return [...filteredRecords, receivedCallUpdate];
+            });
+        }
+        
+    });
+
     /*
     const testActiveCallRecords: ActiveCallRecord[] = [
         {
@@ -554,21 +576,6 @@ function App() {
         }
         toggleEditDeptrecord(); // Hide the edit form
     };
-
-    //----------------------------socketio connection----------------------
-    socket.on('connect', () => {
-        console.log('Connected to server');
-    });
-    socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
-        console.log(receivedCallUpdate);
-        if (receivedCallUpdate.oldcall === '') {
-            setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
-        } else {
-            // change so that it deletes the record before adding
-            setActiveCallRecords(prevActiveCallRecords => [...prevActiveCallRecords, receivedCallUpdate]);
-        }
-        
-    });
 
     // ------------------------------ the app ------------------------------
 
