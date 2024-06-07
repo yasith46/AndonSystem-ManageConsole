@@ -142,7 +142,7 @@ function App() {
                         call2: item.call2in,
                         call3: item.call3in,
                         oldcall: item.oldcallin,
-                    }),
+                    })
                 );
                 setActiveCallRecords(mappedActiveCalls); // Update conrecords state
             })
@@ -236,7 +236,7 @@ function App() {
                         status: item.Color,
                         mancalldesc: item.Description,
                         mancallto: item.CallTo,
-                    }),
+                    })
                 );
                 setCallrecords(mappedcalls); // Update conrecords state
             })
@@ -304,7 +304,7 @@ function App() {
         deletecall(
             callrecords[callIndex].status,
             callrecords[callIndex].mancalldesc,
-            callrecords[callIndex].mancallto,
+            callrecords[callIndex].mancallto
         );
         updatedCallrecords.splice(callIndex, 1); // Remove the record at the specified callIndex
         setCallrecords(updatedCallrecords);
@@ -339,12 +339,12 @@ function App() {
         if (editingCallrecord && editingCallrecordIndex !== -1) {
             // Remove the old record
             const updatedCallrecords = callrecords.filter(
-                (callrecord, callIndex) => callIndex !== editingCallrecordIndex,
+                (callrecord, callIndex) => callIndex !== editingCallrecordIndex
             );
             deletecall(
                 editingCallrecord.status,
                 editingCallrecord.mancalldesc,
-                editingCallrecord.mancallto,
+                editingCallrecord.mancallto
             );
 
             // Add the new record with updated details
@@ -365,7 +365,7 @@ function App() {
             createcall(
                 newEditedCallrecord.status,
                 newEditedCallrecord.mancalldesc,
-                newEditedCallrecord.mancallto,
+                newEditedCallrecord.mancallto
             );
             setEditingCallrecord(null); // Clear the editing state
             setEditingCallrecordIndex(-1); // Reset the editing callIndex
@@ -385,7 +385,7 @@ function App() {
                     (item: { machine: string; consoleid: number }) => ({
                         conname: item.machine,
                         conid: item.consoleid,
-                    }),
+                    })
                 );
                 setConrecords(mappedConrecords); // Update conrecords state
             })
@@ -481,7 +481,7 @@ function App() {
         if (editingConrecord && editingConrecordIndex !== -1) {
             // Remove the old record
             const updatedConrecords = conrecords.filter(
-                (conrecord, conIndex) => conIndex !== editingConrecordIndex,
+                (conrecord, conIndex) => conIndex !== editingConrecordIndex
             );
             deleteconrecord(editingConrecord.conname, editingConrecord.conid); //delete from database
             // Add the new record with updated details
@@ -511,7 +511,7 @@ function App() {
                     (item: { name: string; deptnumber: number }) => ({
                         deptname: item.name,
                         deptid: item.deptnumber,
-                    }),
+                    })
                 );
                 setDeptrecords(mappedUsers); // Update conrecords state
             })
@@ -607,7 +607,7 @@ function App() {
         if (editingDeptrecord && editingDeptrecordIndex !== -1) {
             // Remove the old record
             const updatedDeptrecords = deptrecords.filter(
-                (deptrecord, deptIndex) => deptIndex !== editingDeptrecordIndex,
+                (deptrecord, deptIndex) => deptIndex !== editingDeptrecordIndex
             );
             deleteuserrecord(editingDeptrecord.deptname, editingDeptrecord.deptid);
             // Add the new record with updated details
@@ -675,84 +675,127 @@ function App() {
                     <img src="/src/assets/dept.svg" alt="" className={styles.dashim} />
                 </button>
             </div>
-            <div className={styles.body}>
-                {showDashboard && ( // Dasboard
-                    <div className={styles.dashboard}>
-                        <h1 className={styles.boardname}>Dashboard</h1>
-                        <div className={styles.graph}>
-                            <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
-                            <div className={styles.graphcontain}>
-                                <LineGraph data={graphData} />
-                            </div>
+            {showDashboard && ( // Dasboard
+                <div className={styles.dashboard}>
+                    <h1 className={styles.boardname}>Dashboard</h1>
+                    <div className={styles.graph}>
+                        <h3 className={styles.cardtitle}>Daily Andon Calls </h3>
+                        <div className={styles.graphcontain}>
+                            <LineGraph data={graphData} />
                         </div>
-                        <div className={styles.stats}>
-                            <h3 className={styles.cardtitle}>Stats</h3>
-                            <div className={styles.statgrid}>
-                                <h1 className={styles.statname}>Downtime for the day</h1>
-                                <h1 className={styles.statnum}>02:10:00 </h1>
-                                <h1 className={styles.statname}>Average Rise time</h1>
-                                <h1 className={styles.statbad}>12:25 </h1>
-                                <h1 className={styles.statname}>Anomalies</h1>
-                                <h1 className={styles.statnum}>None</h1>
-                                <h1 className={styles.statname}>Anomalies</h1>
-                                <h1 className={styles.statnum}>None</h1>
-                                <h1 className={styles.statname}>Anomalies</h1>
-                                <h1 className={styles.statnum}>None</h1>
-                            </div>
+                    </div>
+                    <div className={styles.stats}>
+                        <h3 className={styles.cardtitle}>Stats</h3>
+                        <div className={styles.statgrid}>
+                            <h1 className={styles.statname}>Downtime for the day</h1>
+                            <h1 className={styles.statnum}>02:10:00 </h1>
+                            <h1 className={styles.statname}>Average Rise time</h1>
+                            <h1 className={styles.statbad}>12:25 </h1>
+                            <h1 className={styles.statname}>Anomalies</h1>
+                            <h1 className={styles.statnum}>None</h1>
+                            <h1 className={styles.statname}>Anomalies</h1>
+                            <h1 className={styles.statnum}>None</h1>
+                            <h1 className={styles.statname}>Anomalies</h1>
+                            <h1 className={styles.statnum}>None</h1>
                         </div>
-                        <div className={styles.currentcalls}>
-                            <h3 className={styles.cardtitle}>Current Andon Calls</h3>
-                            <div className={styles.calls}>
-                                {activeCallRecords.map(
-                                    (
-                                        activeCallRecord,
-                                        activeCallIndex, // Display calls
-                                    ) => (
-                                        <div key={activeCallIndex}>
-                                            {(activeCallRecord.call1 != '' ||
-                                                activeCallRecord.call2 != '' ||
-                                                activeCallRecord.call3 != '') && ( // If not attended
-                                                <div className={styles.callsat}>
+                    </div>
+                    <div className={styles.currentcalls}>
+                        <h3 className={styles.cardtitle}>Current Andon Calls</h3>
+                        <div className={styles.calls}>
+                            {activeCallRecords.map(
+                                (
+                                    activeCallRecord,
+                                    activeCallIndex // Display calls
+                                ) => (
+                                    <div key={activeCallIndex}>
+                                        {(activeCallRecord.call1 != '' ||
+                                            activeCallRecord.call2 != '' ||
+                                            activeCallRecord.call3 != '') && ( // If not attended
+                                            <div className={styles.callsat}>
+                                                <div className={styles.callsatleft}>
+                                                    <h1 className={styles.machinenum}>
+                                                        {conrecords.find(
+                                                            (record) =>
+                                                                record.conid ==
+                                                                activeCallRecord.consoleid
+                                                        )?.conname || 'Undefined'}
+                                                    </h1>
+                                                    <h3 className={styles.department}>
+                                                        {deptrecords.find(
+                                                            (record) =>
+                                                                record.deptid ==
+                                                                activeCallRecord.department
+                                                        )?.deptname || 'Undefined'}
+                                                    </h3>
+                                                    <h2 className={styles.calltotext}>
+                                                        Andon Call to
+                                                    </h2>
+                                                    <h3 className={styles.callto}>
+                                                        {activeCallRecord.call1 &&
+                                                            (callrecords.find(
+                                                                (record) =>
+                                                                    record.status ===
+                                                                    activeCallRecord.call1
+                                                            )?.mancallto ||
+                                                                'Undefined')}
+                                                        {activeCallRecord.call2 &&
+                                                            (callrecords.find(
+                                                                (record) =>
+                                                                    record.status ===
+                                                                    activeCallRecord.call2
+                                                            )?.mancallto ||
+                                                                'Undefined')}
+                                                        {activeCallRecord.call3 &&
+                                                            (callrecords.find(
+                                                                (record) =>
+                                                                    record.status ===
+                                                                    activeCallRecord.call3
+                                                            )?.mancallto ||
+                                                                'Undefined')}
+                                                    </h3>
+                                                </div>
+                                                <div className={styles.callsatright}>
+                                                    <div className={styles.timeblock}>
+                                                        <h1 className={styles.time}>
+                                                            {activeCallRecord.callhours}:
+                                                            {activeCallRecord.collmints}
+                                                        </h1>
+                                                        <div
+                                                            className={styles.status}
+                                                            style={{
+                                                                backgroundColor:
+                                                                    determineBackgroundColor(
+                                                                        activeCallRecord.call1,
+                                                                        activeCallRecord.call2,
+                                                                        activeCallRecord.call3
+                                                                    ),
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <h1 className={styles.attended}>
+                                                        Not Attended Yet
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        )}
+                                        {activeCallRecord.call1 == '' &&
+                                            activeCallRecord.call2 == '' &&
+                                            activeCallRecord.call3 == '' && (
+                                                <div className={styles.att}>
                                                     <div className={styles.callsatleft}>
                                                         <h1 className={styles.machinenum}>
                                                             {conrecords.find(
                                                                 (record) =>
                                                                     record.conid ==
-                                                                    activeCallRecord.consoleid,
+                                                                    activeCallRecord.consoleid
                                                             )?.conname || 'Undefined'}
                                                         </h1>
                                                         <h3 className={styles.department}>
                                                             {deptrecords.find(
                                                                 (record) =>
                                                                     record.deptid ==
-                                                                    activeCallRecord.department,
+                                                                    activeCallRecord.department
                                                             )?.deptname || 'Undefined'}
-                                                        </h3>
-                                                        <h2 className={styles.calltotext}>
-                                                            Andon Call to
-                                                        </h2>
-                                                        <h3 className={styles.callto}>
-                                                            {activeCallRecord.call1 &&
-                                                                (callrecords.find(
-                                                                    (record) =>
-                                                                        record.status ===
-                                                                        activeCallRecord.call1,
-                                                                )?.mancallto ||
-                                                                    'Undefined')}
-                                                            {activeCallRecord.call2 &&
-                                                                (callrecords.find(
-                                                                    (record) =>
-                                                                        record.status ===
-                                                                        activeCallRecord.call2,
-                                                                )?.mancallto ||
-                                                                    'Undefined')}
-                                                            {activeCallRecord.call3 &&
-                                                                (callrecords.find(
-                                                                    (record) =>
-                                                                        record.status ===
-                                                                        activeCallRecord.call3,
-                                                                )?.mancallto ||
-                                                                    'Undefined')}
                                                         </h3>
                                                     </div>
                                                     <div className={styles.callsatright}>
@@ -766,679 +809,602 @@ function App() {
                                                                 style={{
                                                                     backgroundColor:
                                                                         determineBackgroundColor(
-                                                                            activeCallRecord.call1,
+                                                                            activeCallRecord.oldcall,
                                                                             activeCallRecord.call2,
-                                                                            activeCallRecord.call3,
+                                                                            activeCallRecord.call3
                                                                         ),
                                                                 }}
                                                             />
                                                         </div>
-                                                        <h1 className={styles.attended}>
-                                                            Not Attended Yet
-                                                        </h1>
                                                     </div>
                                                 </div>
                                             )}
-                                            {activeCallRecord.call1 == '' &&
-                                                activeCallRecord.call2 == '' &&
-                                                activeCallRecord.call3 == '' && (
-                                                    <div className={styles.att}>
-                                                        <div className={styles.callsatleft}>
-                                                            <h1 className={styles.machinenum}>
-                                                                {conrecords.find(
-                                                                    (record) =>
-                                                                        record.conid ==
-                                                                        activeCallRecord.consoleid,
-                                                                )?.conname || 'Undefined'}
-                                                            </h1>
-                                                            <h3 className={styles.department}>
-                                                                {deptrecords.find(
-                                                                    (record) =>
-                                                                        record.deptid ==
-                                                                        activeCallRecord.department,
-                                                                )?.deptname || 'Undefined'}
-                                                            </h3>
-                                                        </div>
-                                                        <div className={styles.callsatright}>
-                                                            <div className={styles.timeblock}>
-                                                                <h1 className={styles.time}>
-                                                                    {activeCallRecord.callhours}:
-                                                                    {activeCallRecord.collmints}
-                                                                </h1>
-                                                                <div
-                                                                    className={styles.status}
-                                                                    style={{
-                                                                        backgroundColor:
-                                                                            determineBackgroundColor(
-                                                                                activeCallRecord.oldcall,
-                                                                                activeCallRecord.call2,
-                                                                                activeCallRecord.call3,
-                                                                            ),
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showManCon && ( // Manage consoles
+                <div className={styles.manageconsoles}>
+                    <h1 className={styles.boardname}>Manage Consoles</h1>
+                    <div className={styles.coltitle}>
+                        <h1 className={styles.coltitletext}>Machine</h1>
+                        <div></div>
+                        <h1 className={styles.coltitletext}>Console ID</h1>
+                    </div>
+
+                    {conrecords.map(
+                        (
+                            conrecord,
+                            conIndex // displays consoles
+                        ) => (
+                            <div key={conIndex}>
+                                {conIndex !== editingConrecordIndex && (
+                                    <div className={Classnames(styles.managecallcard, styles.con)}>
+                                        <div className={styles.coltitle}>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.machineno
                                                 )}
-                                        </div>
-                                    ),
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                )}
-                {showManCon && ( // Manage consoles
-                    <div className={styles.manageconsoles}>
-                        <h1 className={styles.boardname}>Manage Consoles</h1>
-                        <div className={styles.coltitle}>
-                            <h1 className={styles.coltitletext}>Machine</h1>
-                            <div></div>
-                            <h1 className={styles.coltitletext}>Console ID</h1>
-                        </div>
-
-                        {conrecords.map(
-                            (
-                                conrecord,
-                                conIndex, // displays consoles
-                            ) => (
-                                <div key={conIndex}>
-                                    {conIndex !== editingConrecordIndex && (
-                                        <div
-                                            className={Classnames(
-                                                styles.managecallcard,
-                                                styles.con,
-                                            )}
-                                        >
-                                            <div className={styles.coltitle}>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.machineno,
-                                                    )}
+                                            >
+                                                {conrecord.conname}
+                                            </h1>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.conid
+                                                )}
+                                            >
+                                                {conrecord.conid}
+                                            </h1>
+                                            <div className={styles.concalls}></div>
+                                            <div className={styles.mancallbut}>
+                                                <button
+                                                    className={styles.mancalldel}
+                                                    onClick={() => handleEditConrecord(conIndex)}
                                                 >
-                                                    {conrecord.conname}
-                                                </h1>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.conid,
-                                                    )}
+                                                    <img
+                                                        src="/src/assets/edit.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
+                                                <button
+                                                    className={styles.mancalledit}
+                                                    onClick={() => handleDeleteConrecord(conIndex)}
                                                 >
-                                                    {conrecord.conid}
-                                                </h1>
-                                                <div className={styles.concalls}></div>
-                                                <div className={styles.mancallbut}>
-                                                    <button
-                                                        className={styles.mancalldel}
-                                                        onClick={() =>
-                                                            handleEditConrecord(conIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/edit.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                    <button
-                                                        className={styles.mancalledit}
-                                                        onClick={() =>
-                                                            handleDeleteConrecord(conIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/del.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                </div>
+                                                    <img
+                                                        src="/src/assets/del.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
                                             </div>
                                         </div>
-                                    )}
-                                </div>
-                            ),
-                        )}
-
-                        {showAddConrecord && ( // Add div
-                            <div
-                                className={Classnames(
-                                    styles.managecallcard,
-                                    styles.con,
-                                    styles.edit2,
-                                )}
-                            >
-                                <h1 className={styles.cardedittitle}>Edit </h1>
-                                <div className={styles.coltitle}>
-                                    <input
-                                        type="text"
-                                        name="conname"
-                                        value={newConrecord.conname}
-                                        onChange={handleConInputChange}
-                                        placeholder="Console name"
-                                        className={styles.machinein}
-                                    />
-
-                                    <input
-                                        type="number"
-                                        name="conid"
-                                        value={newConrecord.conid}
-                                        onChange={handleConInputChange}
-                                        placeholder="ID"
-                                        className={styles.deptin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleAddConrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleCancelAddConrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {editingConrecord && ( // edit div
-                            <div
-                                className={Classnames(
-                                    styles.managecallcard,
-                                    styles.con,
-                                    styles.edit2,
                                 )}
-                            >
-                                <h1 className={styles.cardedittitle}>Edit </h1>
-                                <div className={styles.coltitle}>
-                                    <input
-                                        type="text"
-                                        name="conname"
-                                        value={newConrecord.conname}
-                                        onChange={handleConInputChange}
-                                        placeholder={
-                                            editingConrecord
-                                                ? editingConrecord.conname
-                                                : 'Console name'
-                                        }
-                                        className={styles.machinein}
-                                    />
-
-                                    <input
-                                        type="number"
-                                        name="conid"
-                                        value={newConrecord.conid}
-                                        onChange={handleConInputChange}
-                                        placeholder={
-                                            editingConrecord
-                                                ? editingConrecord.conid.toString()
-                                                : '0'
-                                        }
-                                        className={styles.deptin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleEditAddConrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleEditCancelConrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
-                        )}
+                        )
+                    )}
 
-                        {!showAddConrecord &&
-                            !editingConrecord && ( // Add button
-                                <button className={styles.addbutton} onClick={toggleAddConrecord}>
-                                    Add Consoles +
-                                </button>
-                            )}
-                    </div>
-                )}
-                {showManDept && ( // Manage departments
-                    <div className={styles.managedepts}>
-                        <h1 className={styles.boardname}>Manage Users</h1>
-                        <div className={styles.coltitle}>
-                            <h1 className={styles.coltitletext}>Name</h1>
-                            <h1 className={Classnames(styles.coltitletext, styles.deptnumtit)}>
-                                Dept. Number{' '}
-                            </h1>
-                        </div>
+                    {showAddConrecord && ( // Add div
+                        <div
+                            className={Classnames(styles.managecallcard, styles.con, styles.edit2)}
+                        >
+                            <h1 className={styles.cardedittitle}>Edit </h1>
+                            <div className={styles.coltitle}>
+                                <input
+                                    type="text"
+                                    name="conname"
+                                    value={newConrecord.conname}
+                                    onChange={handleConInputChange}
+                                    placeholder="Console name"
+                                    className={styles.machinein}
+                                />
 
-                        {deptrecords.map(
-                            (
-                                deptrecord,
-                                deptIndex, // displays departments
-                            ) => (
-                                <div key={deptIndex}>
-                                    {deptIndex !== editingDeptrecordIndex && (
-                                        <div
-                                            className={Classnames(
-                                                styles.managecallcard,
-                                                styles.dep1,
-                                            )}
-                                        >
-                                            <div className={styles.coltitle}>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.deptname,
-                                                    )}
-                                                >
-                                                    {deptrecord.deptname}
-                                                </h1>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.deptnum,
-                                                    )}
-                                                >
-                                                    {deptrecord.deptid}
-                                                </h1>
-                                                <div className={styles.mancallbut}>
-                                                    <button
-                                                        className={styles.mancalldel}
-                                                        onClick={() =>
-                                                            handleEditDeptrecord(deptIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/edit.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                    <button
-                                                        className={styles.mancalledit}
-                                                        onClick={() =>
-                                                            handleDeleteDeptrecord(deptIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/del.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                <input
+                                    type="number"
+                                    name="conid"
+                                    value={newConrecord.conid}
+                                    onChange={handleConInputChange}
+                                    placeholder="ID"
+                                    className={styles.deptin}
+                                />
 
-                        {showAddDeptrecord && ( // Add div
-                            <div
-                                className={Classnames(
-                                    styles.managecallcard,
-                                    styles.cardedit,
-                                    styles.dep2,
-                                )}
-                            >
-                                <h1 className={styles.cardedittitle}>Edit </h1>
-                                <div className={styles.coltitle}>
-                                    <input
-                                        type="text"
-                                        name="deptname"
-                                        value={newDeptrecord.deptname}
-                                        onChange={handleDeptInputChange}
-                                        placeholder="Department name"
-                                        className={styles.deptnamein}
-                                    />
-
-                                    <input
-                                        type="number"
-                                        name="deptid"
-                                        value={newDeptrecord.deptid}
-                                        onChange={handleDeptInputChange}
-                                        placeholder="ID"
-                                        className={styles.deptnumin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleAddDeptrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleCancelAddDeptrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {editingDeptrecord && ( // edit div
-                            <div
-                                className={Classnames(
-                                    styles.managecallcard,
-                                    styles.cardedit,
-                                    styles.dep2,
-                                )}
-                            >
-                                <h1 className={styles.cardedittitle}>Edit </h1>
-                                <div className={styles.coltitle}>
-                                    <input
-                                        type="text"
-                                        name="deptname"
-                                        value={newDeptrecord.deptname}
-                                        onChange={handleDeptInputChange}
-                                        placeholder={
-                                            editingDeptrecord
-                                                ? editingDeptrecord.deptname
-                                                : 'Department Name'
-                                        }
-                                        className={styles.deptnamein}
-                                    />
-
-                                    <input
-                                        type="number"
-                                        name="deptid"
-                                        value={newDeptrecord.deptid}
-                                        onChange={handleDeptInputChange}
-                                        placeholder={
-                                            editingDeptrecord
-                                                ? editingDeptrecord.deptid.toString()
-                                                : '0'
-                                        }
-                                        className={styles.deptnumin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleEditAddDeptrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleEditCancelDeptrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {!showAddDeptrecord &&
-                            !editingDeptrecord && ( // Add button
-                                <button className={styles.addbutton} onClick={toggleAddDeptrecord}>
-                                    Add Departments +
-                                </button>
-                            )}
-                    </div>
-                )}
-                {showManCall && ( // Manage Calls
-                    <div className={styles.managecalls}>
-                        <h1 className={styles.boardname}>Manage Calls</h1>
-
-                        <div className={styles.coltitle}>
-                            <h1 className={styles.coltitletext}>Color</h1>
-                            <h1 className={styles.coltitletext}>Description </h1>
-                            <div></div>
-                            <h1 className={styles.coltitletext}>Call To</h1>
-                        </div>
-
-                        {callrecords.map(
-                            (
-                                callrecord,
-                                callIndex, // Display calls
-                            ) => (
-                                <div key={callIndex}>
-                                    {callIndex !== editingCallrecordIndex && (
-                                        <div className={styles.managecallcard}>
-                                            <div className={styles.coltitle}>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.stattmp,
-                                                    )}
-                                                >
-                                                    {callrecord.status}
-                                                </h1>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.mancalldesc,
-                                                    )}
-                                                >
-                                                    {callrecord.mancalldesc}
-                                                </h1>
-                                                <h1
-                                                    className={Classnames(
-                                                        styles.cardtext,
-                                                        styles.mancallto,
-                                                    )}
-                                                >
-                                                    {callrecord.mancallto}
-                                                </h1>
-                                                <div className={styles.mancallbut}>
-                                                    <button
-                                                        className={styles.mancalldel}
-                                                        onClick={() =>
-                                                            handleEditCallrecord(callIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/edit.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                    <button
-                                                        className={styles.mancalledit}
-                                                        onClick={() =>
-                                                            handleDeleteCallrecord(callIndex)
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/src/assets/del.svg"
-                                                            alt=""
-                                                            className={styles.editsvg}
-                                                        />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            ),
-                        )}
-
-                        {showAddCallrecord && ( // Add call div
-                            <div className={Classnames(styles.managecallcard, styles.cardedit)}>
-                                <h1 className={styles.cardedittitle}>Add Call</h1>
-                                <div className={styles.coltitle}>
-                                    <select
-                                        name="status"
-                                        className={styles.colorlist}
-                                        value={newCallrecord.status}
-                                        onChange={handleCallInputChange}
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleAddConrecord}
                                     >
-                                        <option value="" disabled selected>
-                                            Color
-                                        </option>
-                                        <option value="Red">Red </option>
-                                        <option value="Yellow">Yellow</option>
-                                        <option value="Green">Green</option>
-                                        <option value="Blue">Blue</option>
-                                        <option value="White">White</option>
-                                    </select>
-                                    <input
-                                        type="text"
-                                        name="mancalldesc"
-                                        value={newCallrecord.mancalldesc}
-                                        onChange={handleCallInputChange}
-                                        placeholder="Description"
-                                        className={styles.mancalldescin}
-                                    />
-                                    <input
-                                        type="text"
-                                        name="mancallto"
-                                        value={newCallrecord.mancallto}
-                                        onChange={handleCallInputChange}
-                                        placeholder="Call to"
-                                        className={styles.mancalltoin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleAddCallrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleCancelAddCallrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {editingCallrecord && ( // Edit Call div
-                            <div className={Classnames(styles.managecallcard, styles.cardedit)}>
-                                <h1 className={styles.cardedittitle}>Edit Call</h1>
-                                <div className={styles.coltitle}>
-                                    <select
-                                        name="status"
-                                        className={styles.colorlist}
-                                        value={newCallrecord.status}
-                                        onChange={handleCallInputChange}
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleCancelAddConrecord}
                                     >
-                                        <option value="" disabled selected>
-                                            {editingCallrecord ? editingCallrecord.status : ''}
-                                        </option>
-                                        <option value="Red">Red </option>
-                                        <option value="Yellow">Yellow</option>
-                                        <option value="Green">Green</option>
-                                        <option value="Blue">Blue</option>
-                                        <option value="White">White</option>
-                                    </select>
-                                    <input
-                                        type="text"
-                                        name="mancalldesc"
-                                        value={newCallrecord.mancalldesc}
-                                        onChange={handleCallInputChange}
-                                        placeholder={
-                                            editingCallrecord
-                                                ? editingCallrecord.mancalldesc
-                                                : 'Description'
-                                        }
-                                        className={styles.mancalldescin}
-                                    />
-                                    <input
-                                        type="text"
-                                        name="mancallto"
-                                        value={newCallrecord.mancallto}
-                                        onChange={handleCallInputChange}
-                                        placeholder={
-                                            editingCallrecord
-                                                ? editingCallrecord.mancallto
-                                                : 'Call to'
-                                        }
-                                        className={styles.mancalltoin}
-                                    />
-
-                                    <div className={styles.mancallbut}>
-                                        <button
-                                            className={styles.mancalldel}
-                                            onClick={handleEditAddCallrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/check.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                        <button
-                                            className={styles.mancalledit}
-                                            onClick={handleEditCancelCallrecord}
-                                        >
-                                            <img
-                                                src="/src/assets/close.svg"
-                                                alt=""
-                                                className={styles.editsvg}
-                                            />
-                                        </button>
-                                    </div>
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
                                 </div>
                             </div>
-                        )}
+                        </div>
+                    )}
 
-                        {!showAddCallrecord &&
-                            !editingCallrecord && ( // Add button
-                                <button className={styles.addbutton} onClick={toggleAddCallrecord}>
-                                    Add Calls +
-                                </button>
-                            )}
+                    {editingConrecord && ( // edit div
+                        <div
+                            className={Classnames(styles.managecallcard, styles.con, styles.edit2)}
+                        >
+                            <h1 className={styles.cardedittitle}>Edit </h1>
+                            <div className={styles.coltitle}>
+                                <input
+                                    type="text"
+                                    name="conname"
+                                    value={newConrecord.conname}
+                                    onChange={handleConInputChange}
+                                    placeholder={
+                                        editingConrecord ? editingConrecord.conname : 'Console name'
+                                    }
+                                    className={styles.machinein}
+                                />
+
+                                <input
+                                    type="number"
+                                    name="conid"
+                                    value={newConrecord.conid}
+                                    onChange={handleConInputChange}
+                                    placeholder={
+                                        editingConrecord ? editingConrecord.conid.toString() : '0'
+                                    }
+                                    className={styles.deptin}
+                                />
+
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleEditAddConrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleEditCancelConrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {!showAddConrecord &&
+                        !editingConrecord && ( // Add button
+                            <button className={styles.addbutton} onClick={toggleAddConrecord}>
+                                Add Consoles +
+                            </button>
+                        )}
+                </div>
+            )}
+            {showManCall && ( // Manage Calls
+                <div className={styles.managecalls}>
+                    <h1 className={styles.boardname}>Manage Calls</h1>
+
+                    <div className={styles.coltitle}>
+                        <h1 className={styles.coltitletext}>Color</h1>
+                        <h1 className={styles.coltitletext}>Description </h1>
+                        <div></div>
+                        <h1 className={styles.coltitletext}>Call To</h1>
                     </div>
-                )}
-            </div>
+
+                    {callrecords.map(
+                        (
+                            callrecord,
+                            callIndex // Display calls
+                        ) => (
+                            <div key={callIndex}>
+                                {callIndex !== editingCallrecordIndex && (
+                                    <div className={styles.managecallcard}>
+                                        <div className={styles.coltitle}>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.stattmp
+                                                )}
+                                            >
+                                                {callrecord.status}
+                                            </h1>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.mancalldesc
+                                                )}
+                                            >
+                                                {callrecord.mancalldesc}
+                                            </h1>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.mancallto
+                                                )}
+                                            >
+                                                {callrecord.mancallto}
+                                            </h1>
+                                            <div className={styles.mancallbut}>
+                                                <button
+                                                    className={styles.mancalldel}
+                                                    onClick={() => handleEditCallrecord(callIndex)}
+                                                >
+                                                    <img
+                                                        src="/src/assets/edit.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
+                                                <button
+                                                    className={styles.mancalledit}
+                                                    onClick={() =>
+                                                        handleDeleteCallrecord(callIndex)
+                                                    }
+                                                >
+                                                    <img
+                                                        src="/src/assets/del.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    )}
+
+                    {showAddCallrecord && ( // Add call div
+                        <div className={Classnames(styles.managecallcard, styles.cardedit)}>
+                            <h1 className={styles.cardedittitle}>Add Call</h1>
+                            <div className={styles.coltitle}>
+                                <select
+                                    name="status"
+                                    className={styles.colorlist}
+                                    value={newCallrecord.status}
+                                    onChange={handleCallInputChange}
+                                >
+                                    <option value="" disabled selected>
+                                        Color
+                                    </option>
+                                    <option value="Red">Red </option>
+                                    <option value="Yellow">Yellow</option>
+                                    <option value="Green">Green</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="White">White</option>
+                                </select>
+                                <input
+                                    type="text"
+                                    name="mancalldesc"
+                                    value={newCallrecord.mancalldesc}
+                                    onChange={handleCallInputChange}
+                                    placeholder="Description"
+                                    className={styles.mancalldescin}
+                                />
+                                <input
+                                    type="text"
+                                    name="mancallto"
+                                    value={newCallrecord.mancallto}
+                                    onChange={handleCallInputChange}
+                                    placeholder="Call to"
+                                    className={styles.mancalltoin}
+                                />
+
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleAddCallrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleCancelAddCallrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {editingCallrecord && ( // Edit Call div
+                        <div className={Classnames(styles.managecallcard, styles.cardedit)}>
+                            <h1 className={styles.cardedittitle}>Edit Call</h1>
+                            <div className={styles.coltitle}>
+                                <select
+                                    name="status"
+                                    className={styles.colorlist}
+                                    value={newCallrecord.status}
+                                    onChange={handleCallInputChange}
+                                >
+                                    <option value="" disabled selected>
+                                        {editingCallrecord ? editingCallrecord.status : ''}
+                                    </option>
+                                    <option value="Red">Red </option>
+                                    <option value="Yellow">Yellow</option>
+                                    <option value="Green">Green</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="White">White</option>
+                                </select>
+                                <input
+                                    type="text"
+                                    name="mancalldesc"
+                                    value={newCallrecord.mancalldesc}
+                                    onChange={handleCallInputChange}
+                                    placeholder={
+                                        editingCallrecord
+                                            ? editingCallrecord.mancalldesc
+                                            : 'Description'
+                                    }
+                                    className={styles.mancalldescin}
+                                />
+                                <input
+                                    type="text"
+                                    name="mancallto"
+                                    value={newCallrecord.mancallto}
+                                    onChange={handleCallInputChange}
+                                    placeholder={
+                                        editingCallrecord ? editingCallrecord.mancallto : 'Call to'
+                                    }
+                                    className={styles.mancalltoin}
+                                />
+
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleEditAddCallrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleEditCancelCallrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {!showAddCallrecord &&
+                        !editingCallrecord && ( // Add button
+                            <button className={styles.addbutton} onClick={toggleAddCallrecord}>
+                                Add Calls +
+                            </button>
+                        )}
+                </div>
+            )}
+            {showManDept && ( // Manage departments
+                <div className={styles.managedepts}>
+                    <h1 className={styles.boardname}>Manage Users</h1>
+                    <div className={styles.coltitle}>
+                        <h1 className={styles.coltitletext}>Name</h1>
+                        <h1 className={Classnames(styles.coltitletext, styles.deptnumtit)}>
+                            Dept. Number{' '}
+                        </h1>
+                    </div>
+
+                    {deptrecords.map(
+                        (
+                            deptrecord,
+                            deptIndex // displays departments
+                        ) => (
+                            <div key={deptIndex}>
+                                {deptIndex !== editingDeptrecordIndex && (
+                                    <div className={Classnames(styles.managecallcard, styles.dep1)}>
+                                        <div className={styles.coltitle}>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.deptname
+                                                )}
+                                            >
+                                                {deptrecord.deptname}
+                                            </h1>
+                                            <h1
+                                                className={Classnames(
+                                                    styles.cardtext,
+                                                    styles.deptnum
+                                                )}
+                                            >
+                                                {deptrecord.deptid}
+                                            </h1>
+                                            <div className={styles.mancallbut}>
+                                                <button
+                                                    className={styles.mancalldel}
+                                                    onClick={() => handleEditDeptrecord(deptIndex)}
+                                                >
+                                                    <img
+                                                        src="/src/assets/edit.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
+                                                <button
+                                                    className={styles.mancalledit}
+                                                    onClick={() =>
+                                                        handleDeleteDeptrecord(deptIndex)
+                                                    }
+                                                >
+                                                    <img
+                                                        src="/src/assets/del.svg"
+                                                        alt=""
+                                                        className={styles.editsvg}
+                                                    />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    )}
+
+                    {showAddDeptrecord && ( // Add div
+                        <div
+                            className={Classnames(
+                                styles.managecallcard,
+                                styles.cardedit,
+                                styles.dep2
+                            )}
+                        >
+                            <h1 className={styles.cardedittitle}>Edit </h1>
+                            <div className={styles.coltitle}>
+                                <input
+                                    type="text"
+                                    name="deptname"
+                                    value={newDeptrecord.deptname}
+                                    onChange={handleDeptInputChange}
+                                    placeholder="Department name"
+                                    className={styles.deptnamein}
+                                />
+
+                                <input
+                                    type="number"
+                                    name="deptid"
+                                    value={newDeptrecord.deptid}
+                                    onChange={handleDeptInputChange}
+                                    placeholder="ID"
+                                    className={styles.deptnumin}
+                                />
+
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleAddDeptrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleCancelAddDeptrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {editingDeptrecord && ( // edit div
+                        <div
+                            className={Classnames(
+                                styles.managecallcard,
+                                styles.cardedit,
+                                styles.dep2
+                            )}
+                        >
+                            <h1 className={styles.cardedittitle}>Edit </h1>
+                            <div className={styles.coltitle}>
+                                <input
+                                    type="text"
+                                    name="deptname"
+                                    value={newDeptrecord.deptname}
+                                    onChange={handleDeptInputChange}
+                                    placeholder={
+                                        editingDeptrecord
+                                            ? editingDeptrecord.deptname
+                                            : 'Department Name'
+                                    }
+                                    className={styles.deptnamein}
+                                />
+
+                                <input
+                                    type="number"
+                                    name="deptid"
+                                    value={newDeptrecord.deptid}
+                                    onChange={handleDeptInputChange}
+                                    placeholder={
+                                        editingDeptrecord
+                                            ? editingDeptrecord.deptid.toString()
+                                            : '0'
+                                    }
+                                    className={styles.deptnumin}
+                                />
+
+                                <div className={styles.mancallbut}>
+                                    <button
+                                        className={styles.mancalldel}
+                                        onClick={handleEditAddDeptrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/check.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                    <button
+                                        className={styles.mancalledit}
+                                        onClick={handleEditCancelDeptrecord}
+                                    >
+                                        <img
+                                            src="/src/assets/close.svg"
+                                            alt=""
+                                            className={styles.editsvg}
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {!showAddDeptrecord &&
+                        !editingDeptrecord && ( // Add button
+                            <button className={styles.addbutton} onClick={toggleAddDeptrecord}>
+                                Add Departments +
+                            </button>
+                        )}
+                </div>
+            )}
         </div>
     );
 }
