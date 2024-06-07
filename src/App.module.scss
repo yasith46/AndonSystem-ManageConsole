@@ -2,12 +2,14 @@
   margin: 0 0vw;
   padding: 0em;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  display: block;
   border: 2px dashed #888888;
   width: 99vw;
-  min-height: 100vh;
   border-radius: 0;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .topbar {
@@ -83,6 +85,8 @@
   margin: 0vh 1.5vw 2vh 3vw;
   border-radius: 2vh;
   box-shadow: 1.41px 1.41px 2px rgba(0, 0, 0, 0.3);
+  width: 42vw;
+  height: 37vh;
 }
 
 .boardname {
@@ -897,4 +901,8 @@
 .deptnumtit {
   grid-column-start: 4;
   margin-left: 0vw;
+}
+.body {
+  max-height: 40vh;
+  overflow: visible;
 }
