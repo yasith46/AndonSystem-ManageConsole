@@ -14,7 +14,7 @@
 }
 
 .topbar {
-    width: 99vw;
+    width: 100vw;
     height: 8vh;
     position: absolute;
     display: grid;
@@ -319,7 +319,7 @@
 }
 
 .managecalls {
-    width: 92.5vw;
+    width: 93.5vw;
     position: fixed;
     top: 12vh;
     left: 6.5vw;
@@ -412,9 +412,12 @@
 }
 
 .mancalledit {
+    cursor: pointer;
     background-color: #4d4d4d;
     padding-right: 1em;
     padding-left: 1em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 
 .mancalldel {
@@ -422,6 +425,8 @@
     background-color: #4d4d4d;
     padding-right: 1em;
     padding-left: 1em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 
 .mancallbut {
@@ -545,7 +550,7 @@
 }
 
 .manageconsoles {
-    width: 92.5vw;
+    width: 93.5vw;
     position: fixed;
     top: 12vh;
     left: 6.5vw;
@@ -846,7 +851,7 @@
 }
 
 .managedepts {
-    width: 92.5vw;
+    width: 93.5vw;
     position: fixed;
     top: 12vh;
     left: 6.5vw;
