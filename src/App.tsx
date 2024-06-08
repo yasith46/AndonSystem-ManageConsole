@@ -46,10 +46,17 @@ function App() {
     // ------------------------------ Funcrions to switch windows ------------------------------
 
     // When set true, the div becomes visible
+    const [showStartScreen, setShowStartScreen] = useState(true);
     const [showDashboard, setShowDashboard] = useState(true);
     const [showManCall, setShowManCall] = useState(false);
     const [showManCon, setShowManCon] = useState(false);
     const [showManDept, setShowManDept] = useState(false);
+
+    const toggleStartScreen = () => {
+        setShowStartScreen(false);
+    };
+
+    setTimeout(toggleStartScreen, 3000);
 
     const toggleDashboardVisibility = () => {
         setShowDashboard(true);
@@ -1403,6 +1410,11 @@ function App() {
                                 Add Departments +
                             </button>
                         )}
+                </div>
+            )}
+            {showStartScreen && (
+                <div className={styles.startscreen}>
+                    <h1 className={styles.startscreentext}>ANDON</h1>
                 </div>
             )}
         </div>

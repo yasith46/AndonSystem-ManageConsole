@@ -1000,6 +1000,21 @@
     position: relative;
 }
 
-.startscreen {}
+.startscreen {
+    position: fixed;
+    height: 100vh;
+    background-color: #1a1a1a;
+    width: 100vw;
+}
 
 .starscren {}
+
+.startscreentext {
+    font-style: italic;
+    width: 100vw;
+    height: 0vh;
+    font-size: 7em;
+    color: #d4145a;
+    text-align: center;
+    line-height: 85vh;
+}
