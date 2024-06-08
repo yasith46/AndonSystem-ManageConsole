@@ -79,7 +79,7 @@ function App() {
         setShowManDept(true);
     };
 
-    /*const [graphData, setGraphData] = useState<GraphData[]>([]);
+    const [graphData, setGraphData] = useState<GraphData[]>([]);
 
     useEffect(() => {
         // fetching the data from database when the page refreshes
@@ -90,7 +90,7 @@ function App() {
             .catch((error) => {
                 console.error('Error fetching users:', error);
             });
-    }, []);*/
+    }, []);
 
     const increasevalue = () => {
         // Increase graph today's value by one
@@ -108,14 +108,14 @@ function App() {
         });
     };
 
-    const graphData = [
+    /*const graphData = [
         { x: 0, y: 1 },
         { x: 2, y: 2 },
         { x: 3, y: 1 },
         { x: 4, y: 2 },
         { x: 5, y: 5 },
         { x: 6, y: 1 },
-    ];
+    ];*/
 
     const [activeCallRecords, setActiveCallRecords] = useState<ActiveCallRecord[]>([]); // Array of callrecords
 
