@@ -75,7 +75,14 @@
     grid-template-rows: 1fr 4fr 4fr;
     grid-template-columns: 1fr 1fr;
     min-height: 87.9vh;
-    background-color: #323232;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #373636 0%, #323232 100%);
+    background-position: 0%;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
 }
 
 .graph {
@@ -1017,4 +1024,51 @@
     color: #d4145a;
     text-align: center;
     line-height: 85vh;
+}
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(26, 26, 26);
+    position: fixed;
+    display: block;
+}
+
+.logintitle {
+    color: #d4145a;
+    font-style: italic;
+    align-self: center;
+    position: relative;
+    font-size: 7vh;
+}
+
+.logintitle2 {
+    color: #FFFFFF;
+    font-weight: 100;
+    font-size: 3.2vh;
+}
+
+.orgname {
+    font-size: 3vh;
+    font-style: italic;
+    font-weight: 100;
+    text-align: start;
+    width: 20vw;
+}
+
+.loginspacer {
+    height: 2vh;
+}
+
+.loginbutton {
+    font-size: 3vh;
+    padding-left: 1.2vh;
+    padding-bottom: 0.6vh;
+    padding-right: 1.2vh;
+    padding-top: 0.6vh;
+    background-color: #1a1a1a;
+    border: 3px solid #464646;
+    font-weight: 100;
+    color: #FFFFFF;
+    font-style: italic;
 }
