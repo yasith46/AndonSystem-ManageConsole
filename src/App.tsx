@@ -47,6 +47,7 @@ function App() {
 
     // When set true, the div becomes visible
     const [showStartScreen, setShowStartScreen] = useState(true);
+    const [showOrgID, setShowOrgID] = useState(false);
     const [showDashboard, setShowDashboard] = useState(true);
     const [showManCall, setShowManCall] = useState(false);
     const [showManCon, setShowManCon] = useState(false);
@@ -55,8 +56,11 @@ function App() {
     const toggleStartScreen = () => {
         setShowStartScreen(false);
     };
-
     setTimeout(toggleStartScreen, 3000);
+
+    const toggleOrgID = () => {
+        setShowOrgID(!showOrgID);
+    };
 
     const toggleDashboardVisibility = () => {
         setShowDashboard(true);
@@ -162,6 +166,7 @@ function App() {
     socket.on('connect', () => {
         console.log('Connected to server');
     });
+
     socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
         console.log(receivedCallUpdate);
         if (receivedCallUpdate.oldcall === '') {
@@ -184,6 +189,17 @@ function App() {
                 return [...filteredRecords, receivedCallUpdate];
             });
         }
+    });
+    
+    const [stat1, setStat1] = useState(''); // State for stat1
+    const [stat2, setStat2] = useState(''); // State for stat2
+    const [stat3, setStat3] = useState(''); // State for stat3
+
+    socket.on('statUpdate', (data: { stat1: string, stat2: string, stat3: string }) => {
+        console.log('Stat update received:', data);
+        setStat1(data.stat1);
+        setStat2(data.stat2);
+        setStat3(data.stat3);
     });
 
     /*
@@ -642,7 +658,9 @@ function App() {
         <div className={styles.App}>
             <div className={styles.topbar}>
                 <h1 className={styles.logotext}>ANDON</h1>
-                <button className={styles.account}></button>
+                <button 
+                    className={styles.account}
+                    onClick={toggleOrgID}></button>
             </div>
 
             <div className={styles.navbar}>
@@ -694,16 +712,18 @@ function App() {
                     <div className={styles.stats}>
                         <h3 className={styles.cardtitle}>Stats</h3>
                         <div className={styles.statgrid}>
-                            <h1 className={styles.statname}>Downtime for the day</h1>
-                            <h1 className={styles.statnum}>02:10:00 </h1>
-                            <h1 className={styles.statname}>Average Rise time</h1>
-                            <h1 className={styles.statbad}>12:25 </h1>
-                            <h1 className={styles.statname}>Anomalies</h1>
-                            <h1 className={styles.statnum}>None</h1>
-                            <h1 className={styles.statname}>Anomalies</h1>
-                            <h1 className={styles.statnum}>None</h1>
-                            <h1 className={styles.statname}>Anomalies</h1>
-                            <h1 className={styles.statnum}>None</h1>
+                            <div className={styles.statcard}>
+                                <h1 className={styles.stat1label}>Total Downtime for the day</h1>
+                                <h1 className={styles.stat1}>{stat1}</h1>
+                            </div>
+                            <div className={styles.statcard}>
+                                <h1 className={styles.stat1label}>Current down machines</h1>
+                                <h1 className={styles.stat1}>{stat2}</h1>
+                            </div>
+                            <div className={styles.statcard}>
+                                <h1 className={styles.stat1label}>Probability of a breakdown</h1>
+                                <h1 className={styles.stat1}>{stat3}</h1>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.currentcalls}>
@@ -1417,6 +1437,11 @@ function App() {
                     <h1 className={styles.startscreentext}>ANDON</h1>
                 </div>
             )}
+            {showOrgID && (
+                <div className={styles.orgnamecard}>
+                <h1 className={styles.orgnametitle}>Organisation ID:</h1>
+                <h1 className={styles.orgname}>0001</h1>
+            </div>)}
         </div>
     );
 }
