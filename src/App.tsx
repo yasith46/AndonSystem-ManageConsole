@@ -202,6 +202,11 @@ function App() {
         setStat3(data.stat3);
     });
 
+    socket.on('socketTest', (receivedvalue => {
+        console.log('Received integer value : ', receivedvalue);
+        console.log(receivedvalue);
+    }));
+
     /*
     const testActiveCallRecords: ActiveCallRecord[] = [
         {
