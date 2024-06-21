@@ -176,7 +176,6 @@ function App() {
     });
 
     socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
-        update();
         console.log(receivedCallUpdate);
         if (receivedCallUpdate.oldcall === '') {
             setActiveCallRecords((prevActiveCallRecords) => [
@@ -205,11 +204,11 @@ function App() {
     const [stat3, setStat3] = useState(''); // State for stat3
 
     socket.on('statUpdate', (data: { stat1: string, stat2: string, stat3: string }) => {
-        update();
         console.log('Stat update received:', data);
-        setStat1(data.stat1);
-        setStat2(data.stat2);
-        setStat3(data.stat3);
+        // React uses the prevStatn internally
+        setStat1(prevStat1 => data.stat1);
+        setStat2(prevStat2 => data.stat2);
+        setStat3(prevStat3 => data.stat3);
     });
 
     socket.on('socketTest', (receivedvalue => {
