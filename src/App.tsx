@@ -92,6 +92,14 @@ function App() {
 
     const [graphData, setGraphData] = useState<GraphData[]>([]);
 
+    // Updating divs
+    const [updateState, setUpdateState] = useState(true);
+
+    const update = () => {
+        setUpdateState(!updateState);
+    }
+
+
     useEffect(() => {
         // fetching the data from database when the page refreshes
         Axios.get('http://localhost:3002/getGraph')
@@ -168,6 +176,7 @@ function App() {
     });
 
     socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
+        update();
         console.log(receivedCallUpdate);
         if (receivedCallUpdate.oldcall === '') {
             setActiveCallRecords((prevActiveCallRecords) => [
@@ -196,6 +205,7 @@ function App() {
     const [stat3, setStat3] = useState(''); // State for stat3
 
     socket.on('statUpdate', (data: { stat1: string, stat2: string, stat3: string }) => {
+        update();
         console.log('Stat update received:', data);
         setStat1(data.stat1);
         setStat2(data.stat2);
@@ -203,7 +213,7 @@ function App() {
     });
 
     socket.on('socketTest', (receivedvalue => {
-        console.log('Received integer value : ', receivedvalue);
+        console.log('Socket received integer value : ', receivedvalue);
         console.log(receivedvalue);
     }));
 
