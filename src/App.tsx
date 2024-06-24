@@ -178,18 +178,19 @@ function App() {
     socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
         console.log(receivedCallUpdate);
         setActiveCallRecords((prevActiveCallRecords) => {
+            console.log('Previous active call records:', prevActiveCallRecords);
             if (receivedCallUpdate.oldcall === '') {
                 increasevalue();
                 return [...prevActiveCallRecords, receivedCallUpdate];
             } else {
                 // Filter out the record that matches the consoleid and oldcall
                 const filteredRecords = prevActiveCallRecords.filter((record) => {
-                    const isSameConsole = record.consoleid !== receivedCallUpdate.consoleid;
+                    const isSameConsole = record.consoleid === receivedCallUpdate.consoleid;
                     const isMatchingCall =
-                        record.call1 !== receivedCallUpdate.oldcall &&
-                        record.call2 !== receivedCallUpdate.oldcall &&
-                        record.call3 !== receivedCallUpdate.oldcall;
-                    return isSameConsole || isMatchingCall;
+                        record.call1 === receivedCallUpdate.oldcall ||
+                        record.call2 === receivedCallUpdate.oldcall ||
+                        record.call3 === receivedCallUpdate.oldcall;
+                    return !(isSameConsole && isMatchingCall);
                 });
     
                 // Add the new record to the filtered records
