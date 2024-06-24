@@ -175,28 +175,11 @@ function App() {
         console.log('Connected to server');
     });
 
-    socket.on('callUpdate', (receivedCallUpdate: ActiveCallRecord) => {
-        console.log(receivedCallUpdate);
-        setActiveCallRecords((prevActiveCallRecords) => {
-            console.log('Previous active call records:', prevActiveCallRecords);
-            if (receivedCallUpdate.oldcall === '') {
-                increasevalue();
-                return [...prevActiveCallRecords, receivedCallUpdate];
-            } else {
-                // Filter out the record that matches the consoleid and oldcall
-                const filteredRecords = prevActiveCallRecords.filter((record) => {
-                    const isSameConsole = record.consoleid === receivedCallUpdate.consoleid;
-                    const isMatchingCall =
-                        record.call1 === receivedCallUpdate.oldcall ||
-                        record.call2 === receivedCallUpdate.oldcall ||
-                        record.call3 === receivedCallUpdate.oldcall;
-                    return !(isSameConsole && isMatchingCall);
-                });
+    socket.on('callUpdate', (receivedCallUpdates: ActiveCallRecord[]) => {
+        console.log('Received call updates:', receivedCallUpdates);
     
-                // Add the new record to the filtered records
-                return [...filteredRecords, receivedCallUpdate];
-            }
-        });
+        // Directly update the state with the received array
+        setActiveCallRecords(receivedCallUpdates);
     });
     
     const [stat1, setStat1] = useState(''); // State for stat1
